@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>educational-system-provider-teacher-8005</artifactId>
+    <artifactId>educational-system-config-server-7000</artifactId>
 
     <properties>
         <maven.compiler.source>11</maven.compiler.source>
@@ -18,8 +18,8 @@
 
     <dependencies>
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-config-server</artifactId>
         </dependency>
     </dependencies>
 
