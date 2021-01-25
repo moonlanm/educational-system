@@ -26,6 +26,7 @@
         <module>educational-system-consumer-admin-9000</module>
         <module>educational-system-consumer-student-9001</module>
         <module>educational-system-consumer-teacher-9002</module>
+        <module>educational-system-commons</module>
     </modules>
     <packaging>pom</packaging>
 
