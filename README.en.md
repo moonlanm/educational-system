@@ -1,36 +1,10 @@
 # educational-system
 
-#### Description
-{**When you're done, you can delete the content in this README and update the file with details for others getting started with your repository**}
-
-#### Software Architecture
-Software architecture description
-
-#### Installation
-
-1.  xxxx
-2.  xxxx
-3.  xxxx
-
-#### Instructions
-
-1.  xxxx
-2.  xxxx
-3.  xxxx
-
-#### Contribution
-
-1.  Fork the repository
-2.  Create Feat_xxx branch
-3.  Commit your code
-4.  Create Pull Request
-
-
-#### Gitee Feature
-
-1.  You can use Readme\_XXX.md to support different languages, such as Readme\_en.md, Readme\_zh.md
-2.  Gitee blog [blog.gitee.com](https://blog.gitee.com)
-3.  Explore open source project [https://gitee.com/explore](https://gitee.com/explore)
-4.  The most valuable open source project [GVP](https://gitee.com/gvp)
-5.  The manual of Gitee [https://gitee.com/help](https://gitee.com/help)
-6.  The most popular members  [https://gitee.com/gitee-stars/](https://gitee.com/gitee-stars/)
+## 非java环境摘要
+1. nacos
+   > 单体运行，不需要设置mysql持久化
+2. postgresql
+   > 数据库为sys_edu，如果没有数据库，可以按照以下步骤
+   > 1. 把该项目的application.yml文件中的`spring.jpa.hibernate.auto`修改为create，
+   > 2. 运行`educational-system-commons`项目下的edu.hubu.commons.CommonTests类中的任意一个空方法即可创建数据库
+   > 3. 将`spring.jpa.hibernate.auto`修改为update
