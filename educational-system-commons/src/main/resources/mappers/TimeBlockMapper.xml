@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.hubu.commons.mybatis.mapper.TimeBlockMapper">
+  <resultMap id="BaseResultMap" type="edu.hubu.commons.mybatis.model.TimeBlock">
+    <!--@mbg.generated-->
+    <!--@Table time_block-->
+    <id column="time_block_id" jdbcType="VARCHAR" property="timeBlockId" />
+    <result column="term_name" jdbcType="VARCHAR" property="termName" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    time_block_id, term_name
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from time_block
+    where time_block_id = #{timeBlockId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    <!--@mbg.generated-->
+    delete from time_block
+    where time_block_id = #{timeBlockId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="edu.hubu.commons.mybatis.model.TimeBlock">
+    <!--@mbg.generated-->
+    insert into time_block (time_block_id, term_name)
+    values (#{timeBlockId,jdbcType=VARCHAR}, #{termName,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.hubu.commons.mybatis.model.TimeBlock">
+    <!--@mbg.generated-->
+    insert into time_block
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="timeBlockId != null">
+        time_block_id,
+      </if>
+      <if test="termName != null">
+        term_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="timeBlockId != null">
+        #{timeBlockId,jdbcType=VARCHAR},
+      </if>
+      <if test="termName != null">
+        #{termName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="edu.hubu.commons.mybatis.model.TimeBlock">
+    <!--@mbg.generated-->
+    update time_block
+    <set>
+      <if test="termName != null">
+        term_name = #{termName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where time_block_id = #{timeBlockId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="edu.hubu.commons.mybatis.model.TimeBlock">
+    <!--@mbg.generated-->
+    update time_block
+    set term_name = #{termName,jdbcType=VARCHAR}
+    where time_block_id = #{timeBlockId,jdbcType=VARCHAR}
+  </update>
+</mapper>

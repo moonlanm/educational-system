@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.hubu.commons.mybatis.mapper.PermissionMapper">
+  <resultMap id="BaseResultMap" type="edu.hubu.commons.mybatis.model.Permission">
+    <!--@mbg.generated-->
+    <!--@Table permission-->
+    <id column="permission_id" jdbcType="VARCHAR" property="permissionId" />
+    <result column="permission_is_deleted" jdbcType="BOOLEAN" property="permissionIsDeleted" />
+    <result column="permission_is_forbidden" jdbcType="BOOLEAN" property="permissionIsForbidden" />
+    <result column="permission_name" jdbcType="VARCHAR" property="permissionName" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    permission_id, permission_is_deleted, permission_is_forbidden, permission_name
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from permission
+    where permission_id = #{permissionId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    <!--@mbg.generated-->
+    delete from permission
+    where permission_id = #{permissionId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="edu.hubu.commons.mybatis.model.Permission">
+    <!--@mbg.generated-->
+    insert into permission (permission_id, permission_is_deleted, 
+      permission_is_forbidden, permission_name)
+    values (#{permissionId,jdbcType=VARCHAR}, #{permissionIsDeleted,jdbcType=BOOLEAN}, 
+      #{permissionIsForbidden,jdbcType=BOOLEAN}, #{permissionName,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.hubu.commons.mybatis.model.Permission">
+    <!--@mbg.generated-->
+    insert into permission
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="permissionId != null">
+        permission_id,
+      </if>
+      <if test="permissionIsDeleted != null">
+        permission_is_deleted,
+      </if>
+      <if test="permissionIsForbidden != null">
+        permission_is_forbidden,
+      </if>
+      <if test="permissionName != null">
+        permission_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="permissionId != null">
+        #{permissionId,jdbcType=VARCHAR},
+      </if>
+      <if test="permissionIsDeleted != null">
+        #{permissionIsDeleted,jdbcType=BOOLEAN},
+      </if>
+      <if test="permissionIsForbidden != null">
+        #{permissionIsForbidden,jdbcType=BOOLEAN},
+      </if>
+      <if test="permissionName != null">
+        #{permissionName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="edu.hubu.commons.mybatis.model.Permission">
+    <!--@mbg.generated-->
+    update permission
+    <set>
+      <if test="permissionIsDeleted != null">
+        permission_is_deleted = #{permissionIsDeleted,jdbcType=BOOLEAN},
+      </if>
+      <if test="permissionIsForbidden != null">
+        permission_is_forbidden = #{permissionIsForbidden,jdbcType=BOOLEAN},
+      </if>
+      <if test="permissionName != null">
+        permission_name = #{permissionName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where permission_id = #{permissionId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="edu.hubu.commons.mybatis.model.Permission">
+    <!--@mbg.generated-->
+    update permission
+    set permission_is_deleted = #{permissionIsDeleted,jdbcType=BOOLEAN},
+      permission_is_forbidden = #{permissionIsForbidden,jdbcType=BOOLEAN},
+      permission_name = #{permissionName,jdbcType=VARCHAR}
+    where permission_id = #{permissionId,jdbcType=VARCHAR}
+  </update>
+</mapper>

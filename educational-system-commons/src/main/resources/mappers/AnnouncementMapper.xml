@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.hubu.commons.mybatis.mapper.AnnouncementMapper">
+    <resultMap id="BaseResultMap" type="edu.hubu.commons.mybatis.model.Announcement">
+        <!--@mbg.generated-->
+        <!--@Table announcement-->
+        <id column="announcement_id" jdbcType="VARCHAR" property="announcementId"/>
+        <result column="announcement_is_deleted" jdbcType="BOOLEAN" property="announcementIsDeleted"/>
+        <result column="announcement_is_forbidden" jdbcType="BOOLEAN" property="announcementIsForbidden"/>
+        <result column="announcement_publish_time" jdbcType="TIMESTAMP" property="announcementPublishTime"/>
+        <result column="announcement_read_number" jdbcType="BIGINT" property="announcementReadNumber"/>
+        <result column="announcement_title" jdbcType="VARCHAR" property="announcementTitle"/>
+        <result column="announcement_announcement_type_id" jdbcType="VARCHAR"
+                property="announcementAnnouncementTypeId"/>
+        <association property="announcementType" javaType="edu.hubu.commons.mybatis.model.AnnouncementType"
+                     resultMap="edu.hubu.commons.mybatis.mapper.AnnouncementTypeMapper.BaseResultMap"/>
+        <collection property="announcementContents" ofType="edu.hubu.commons.mybatis.model.AnnouncementContent"
+                    resultMap="edu.hubu.commons.mybatis.mapper.AnnouncementContentMapper.BaseResultMap"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--@mbg.generated-->
+        announcement_id, announcement_is_deleted, announcement_is_forbidden, announcement_publish_time,
+        announcement_read_number, announcement_title, announcement_announcement_type_id
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+        <!--@mbg.generated-->
+        select
+        <include refid="Base_Column_List"/>
+        from announcement
+        where announcement_id = #{announcementId,jdbcType=VARCHAR}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+        <!--@mbg.generated-->
+        delete
+        from announcement
+        where announcement_id = #{announcementId,jdbcType=VARCHAR}
+    </delete>
+    <insert id="insert" parameterType="edu.hubu.commons.mybatis.model.Announcement">
+        <!--@mbg.generated-->
+        insert into announcement (announcement_id, announcement_is_deleted,
+                                  announcement_is_forbidden, announcement_publish_time,
+                                  announcement_read_number, announcement_title,
+                                  announcement_announcement_type_id)
+        values (#{announcementId,jdbcType=VARCHAR}, #{announcementIsDeleted,jdbcType=BOOLEAN},
+                #{announcementIsForbidden,jdbcType=BOOLEAN}, #{announcementPublishTime,jdbcType=TIMESTAMP},
+                #{announcementReadNumber,jdbcType=BIGINT}, #{announcementTitle,jdbcType=VARCHAR},
+                #{announcementAnnouncementTypeId,jdbcType=VARCHAR})
+    </insert>
+    <insert id="insertSelective" parameterType="edu.hubu.commons.mybatis.model.Announcement">
+        <!--@mbg.generated-->
+        insert into announcement
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="announcementId != null">
+                announcement_id,
+            </if>
+            <if test="announcementIsDeleted != null">
+                announcement_is_deleted,
+            </if>
+            <if test="announcementIsForbidden != null">
+                announcement_is_forbidden,
+            </if>
+            <if test="announcementPublishTime != null">
+                announcement_publish_time,
+            </if>
+            <if test="announcementReadNumber != null">
+                announcement_read_number,
+            </if>
+            <if test="announcementTitle != null">
+                announcement_title,
+            </if>
+            <if test="announcementAnnouncementTypeId != null">
+                announcement_announcement_type_id,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="announcementId != null">
+                #{announcementId,jdbcType=VARCHAR},
+            </if>
+            <if test="announcementIsDeleted != null">
+                #{announcementIsDeleted,jdbcType=BOOLEAN},
+            </if>
+            <if test="announcementIsForbidden != null">
+                #{announcementIsForbidden,jdbcType=BOOLEAN},
+            </if>
+            <if test="announcementPublishTime != null">
+                #{announcementPublishTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="announcementReadNumber != null">
+                #{announcementReadNumber,jdbcType=BIGINT},
+            </if>
+            <if test="announcementTitle != null">
+                #{announcementTitle,jdbcType=VARCHAR},
+            </if>
+            <if test="announcementAnnouncementTypeId != null">
+                #{announcementAnnouncementTypeId,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="edu.hubu.commons.mybatis.model.Announcement">
+        <!--@mbg.generated-->
+        update announcement
+        <set>
+            <if test="announcementIsDeleted != null">
+                announcement_is_deleted = #{announcementIsDeleted,jdbcType=BOOLEAN},
+            </if>
+            <if test="announcementIsForbidden != null">
+                announcement_is_forbidden = #{announcementIsForbidden,jdbcType=BOOLEAN},
+            </if>
+            <if test="announcementPublishTime != null">
+                announcement_publish_time = #{announcementPublishTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="announcementReadNumber != null">
+                announcement_read_number = #{announcementReadNumber,jdbcType=BIGINT},
+            </if>
+            <if test="announcementTitle != null">
+                announcement_title = #{announcementTitle,jdbcType=VARCHAR},
+            </if>
+            <if test="announcementAnnouncementTypeId != null">
+                announcement_announcement_type_id = #{announcementAnnouncementTypeId,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where announcement_id = #{announcementId,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="edu.hubu.commons.mybatis.model.Announcement">
+        <!--@mbg.generated-->
+        update announcement
+        set announcement_is_deleted           = #{announcementIsDeleted,jdbcType=BOOLEAN},
+            announcement_is_forbidden         = #{announcementIsForbidden,jdbcType=BOOLEAN},
+            announcement_publish_time         = #{announcementPublishTime,jdbcType=TIMESTAMP},
+            announcement_read_number          = #{announcementReadNumber,jdbcType=BIGINT},
+            announcement_title                = #{announcementTitle,jdbcType=VARCHAR},
+            announcement_announcement_type_id = #{announcementAnnouncementTypeId,jdbcType=VARCHAR}
+        where announcement_id = #{announcementId,jdbcType=VARCHAR}
+    </update>
+
+    <select id="selectLikePageOrderBy" resultMap="BaseResultMap">
+        select *
+        from announcement
+                     left join announcement_content ac
+                on announcement.announcement_id = ac.announcement_content_announcement_id
+                     left join announcement_type a
+                on a.announcement_type_id = announcement.announcement_announcement_type_id
+        <where>
+            <if test="param4.announcementId != null">
+                and announcement_id = #{param4.announcementId}
+            </if>
+            <if test="param4.announcementTitle != null">
+                and announcement_title like CONCAT('%', #{param4.announcementTitle}, '%')
+            </if>
+            <if test="param4.announcementPublishTime != null">
+                and announcement_publish_time =
+                    #{param4.announcementPublishTime,javaType=java.time.LocalDateTime,jdbcType=DATE}
+            </if>
+            <if test="param4.announcementType != null">
+                <if test="param4.announcementType.announcementTypeId != null">
+                    and a.announcement_type_id = #{param4.announcementType.announcementTypeId}
+                </if>
+                <if test="param4.announcementType.announcementTypeName != null">
+                    and a.announcement_type_name like CONCAT('%', #{param4.announcementType.announcementTypeName}, '%')
+                </if>
+            </if>
+        </where>
+        order by #{param3}
+        offset #{param1} limit #{param2}
+    </select>
+</mapper>

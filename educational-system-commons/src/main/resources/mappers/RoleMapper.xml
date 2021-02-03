@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.hubu.commons.mybatis.mapper.RoleMapper">
+  <resultMap id="BaseResultMap" type="edu.hubu.commons.mybatis.model.Role">
+    <!--@mbg.generated-->
+    <!--@Table "role"-->
+    <id column="role_id" jdbcType="VARCHAR" property="roleId" />
+    <result column="role_is_deleted" jdbcType="BOOLEAN" property="roleIsDeleted" />
+    <result column="role_is_forbidden" jdbcType="BOOLEAN" property="roleIsForbidden" />
+    <result column="role_name" jdbcType="VARCHAR" property="roleName" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    role_id, role_is_deleted, role_is_forbidden, role_name
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from "role"
+    where role_id = #{roleId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    <!--@mbg.generated-->
+    delete from "role"
+    where role_id = #{roleId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="edu.hubu.commons.mybatis.model.Role">
+    <!--@mbg.generated-->
+    insert into "role" (role_id, role_is_deleted, role_is_forbidden, 
+      role_name)
+    values (#{roleId,jdbcType=VARCHAR}, #{roleIsDeleted,jdbcType=BOOLEAN}, #{roleIsForbidden,jdbcType=BOOLEAN}, 
+      #{roleName,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.hubu.commons.mybatis.model.Role">
+    <!--@mbg.generated-->
+    insert into "role"
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="roleId != null">
+        role_id,
+      </if>
+      <if test="roleIsDeleted != null">
+        role_is_deleted,
+      </if>
+      <if test="roleIsForbidden != null">
+        role_is_forbidden,
+      </if>
+      <if test="roleName != null">
+        role_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="roleId != null">
+        #{roleId,jdbcType=VARCHAR},
+      </if>
+      <if test="roleIsDeleted != null">
+        #{roleIsDeleted,jdbcType=BOOLEAN},
+      </if>
+      <if test="roleIsForbidden != null">
+        #{roleIsForbidden,jdbcType=BOOLEAN},
+      </if>
+      <if test="roleName != null">
+        #{roleName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="edu.hubu.commons.mybatis.model.Role">
+    <!--@mbg.generated-->
+    update "role"
+    <set>
+      <if test="roleIsDeleted != null">
+        role_is_deleted = #{roleIsDeleted,jdbcType=BOOLEAN},
+      </if>
+      <if test="roleIsForbidden != null">
+        role_is_forbidden = #{roleIsForbidden,jdbcType=BOOLEAN},
+      </if>
+      <if test="roleName != null">
+        role_name = #{roleName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where role_id = #{roleId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="edu.hubu.commons.mybatis.model.Role">
+    <!--@mbg.generated-->
+    update "role"
+    set role_is_deleted = #{roleIsDeleted,jdbcType=BOOLEAN},
+      role_is_forbidden = #{roleIsForbidden,jdbcType=BOOLEAN},
+      role_name = #{roleName,jdbcType=VARCHAR}
+    where role_id = #{roleId,jdbcType=VARCHAR}
+  </update>
+</mapper>

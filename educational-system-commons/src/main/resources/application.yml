@@ -1,0 +1,22 @@
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/sys_edu
+    username: postgres
+    password: root
+  jpa:
+    generate-ddl: true
+    show-sql: true
+    database: postgresql
+    hibernate:
+      ddl-auto: update
+logging:
+  level:
+    edu.hubu: debug
+    org.springframework.web: error
+    org.hibernate.SQL: trace
+    org.hibernate.engine.QueryParameters: trace
+    org.hibernate.engine.query.HQLQueryPlan: trace
+    org.hibernate.type.descriptor.sql.BasicBinder: trace
+mybatis:
+  mapper-locations: classpath:mappers/*.xml

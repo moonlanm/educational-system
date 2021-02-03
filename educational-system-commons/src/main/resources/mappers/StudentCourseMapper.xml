@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.hubu.commons.mybatis.mapper.StudentCourseMapper">
+  <resultMap id="BaseResultMap" type="edu.hubu.commons.mybatis.model.StudentCourse">
+    <!--@mbg.generated-->
+    <!--@Table student_course-->
+    <id column="student_course_id" jdbcType="VARCHAR" property="studentCourseId" />
+    <result column="student_course_week_day" jdbcType="BIGINT" property="studentCourseWeekDay" />
+    <result column="student_course_week_time" jdbcType="BIGINT" property="studentCourseWeekTime" />
+    <result column="student_course_student_id" jdbcType="VARCHAR" property="studentCourseStudentId" />
+    <result column="student_course_student_select_course_id" jdbcType="VARCHAR" property="studentCourseStudentSelectCourseId" />
+    <result column="student_course_term_id" jdbcType="VARCHAR" property="studentCourseTermId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    student_course_id, student_course_week_day, student_course_week_time, student_course_student_id, 
+    student_course_student_select_course_id, student_course_term_id
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from student_course
+    where student_course_id = #{studentCourseId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    <!--@mbg.generated-->
+    delete from student_course
+    where student_course_id = #{studentCourseId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="edu.hubu.commons.mybatis.model.StudentCourse">
+    <!--@mbg.generated-->
+    insert into student_course (student_course_id, student_course_week_day, 
+      student_course_week_time, student_course_student_id, 
+      student_course_student_select_course_id, student_course_term_id
+      )
+    values (#{studentCourseId,jdbcType=VARCHAR}, #{studentCourseWeekDay,jdbcType=BIGINT}, 
+      #{studentCourseWeekTime,jdbcType=BIGINT}, #{studentCourseStudentId,jdbcType=VARCHAR}, 
+      #{studentCourseStudentSelectCourseId,jdbcType=VARCHAR}, #{studentCourseTermId,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="edu.hubu.commons.mybatis.model.StudentCourse">
+    <!--@mbg.generated-->
+    insert into student_course
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="studentCourseId != null">
+        student_course_id,
+      </if>
+      <if test="studentCourseWeekDay != null">
+        student_course_week_day,
+      </if>
+      <if test="studentCourseWeekTime != null">
+        student_course_week_time,
+      </if>
+      <if test="studentCourseStudentId != null">
+        student_course_student_id,
+      </if>
+      <if test="studentCourseStudentSelectCourseId != null">
+        student_course_student_select_course_id,
+      </if>
+      <if test="studentCourseTermId != null">
+        student_course_term_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="studentCourseId != null">
+        #{studentCourseId,jdbcType=VARCHAR},
+      </if>
+      <if test="studentCourseWeekDay != null">
+        #{studentCourseWeekDay,jdbcType=BIGINT},
+      </if>
+      <if test="studentCourseWeekTime != null">
+        #{studentCourseWeekTime,jdbcType=BIGINT},
+      </if>
+      <if test="studentCourseStudentId != null">
+        #{studentCourseStudentId,jdbcType=VARCHAR},
+      </if>
+      <if test="studentCourseStudentSelectCourseId != null">
+        #{studentCourseStudentSelectCourseId,jdbcType=VARCHAR},
+      </if>
+      <if test="studentCourseTermId != null">
+        #{studentCourseTermId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="edu.hubu.commons.mybatis.model.StudentCourse">
+    <!--@mbg.generated-->
+    update student_course
+    <set>
+      <if test="studentCourseWeekDay != null">
+        student_course_week_day = #{studentCourseWeekDay,jdbcType=BIGINT},
+      </if>
+      <if test="studentCourseWeekTime != null">
+        student_course_week_time = #{studentCourseWeekTime,jdbcType=BIGINT},
+      </if>
+      <if test="studentCourseStudentId != null">
+        student_course_student_id = #{studentCourseStudentId,jdbcType=VARCHAR},
+      </if>
+      <if test="studentCourseStudentSelectCourseId != null">
+        student_course_student_select_course_id = #{studentCourseStudentSelectCourseId,jdbcType=VARCHAR},
+      </if>
+      <if test="studentCourseTermId != null">
+        student_course_term_id = #{studentCourseTermId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where student_course_id = #{studentCourseId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="edu.hubu.commons.mybatis.model.StudentCourse">
+    <!--@mbg.generated-->
+    update student_course
+    set student_course_week_day = #{studentCourseWeekDay,jdbcType=BIGINT},
+      student_course_week_time = #{studentCourseWeekTime,jdbcType=BIGINT},
+      student_course_student_id = #{studentCourseStudentId,jdbcType=VARCHAR},
+      student_course_student_select_course_id = #{studentCourseStudentSelectCourseId,jdbcType=VARCHAR},
+      student_course_term_id = #{studentCourseTermId,jdbcType=VARCHAR}
+    where student_course_id = #{studentCourseId,jdbcType=VARCHAR}
+  </update>
+</mapper>

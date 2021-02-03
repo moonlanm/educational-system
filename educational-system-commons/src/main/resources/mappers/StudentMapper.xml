@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.hubu.commons.mybatis.mapper.StudentMapper">
+  <resultMap id="BaseResultMap" type="edu.hubu.commons.mybatis.model.Student">
+    <!--@mbg.generated-->
+    <!--@Table student-->
+    <id column="student_id" jdbcType="VARCHAR" property="studentId" />
+    <result column="student_enter_school_time" jdbcType="TIMESTAMP" property="studentEnterSchoolTime" />
+    <result column="student_is_deleted" jdbcType="BOOLEAN" property="studentIsDeleted" />
+    <result column="student_is_forbidden" jdbcType="BOOLEAN" property="studentIsForbidden" />
+    <result column="student_name" jdbcType="VARCHAR" property="studentName" />
+    <result column="student_password" jdbcType="VARCHAR" property="studentPassword" />
+    <result column="student_token" jdbcType="VARCHAR" property="studentToken" />
+    <result column="student_faculty_id" jdbcType="VARCHAR" property="studentFacultyId" />
+    <result column="student_major_id" jdbcType="VARCHAR" property="studentMajorId" />
+    <result column="student_role_id" jdbcType="VARCHAR" property="studentRoleId" />
+    <result column="student_class_id" jdbcType="VARCHAR" property="studentClassId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    student_id, student_enter_school_time, student_is_deleted, student_is_forbidden, 
+    student_name, student_password, student_token, student_faculty_id, student_major_id, 
+    student_role_id, student_class_id
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from student
+    where student_id = #{studentId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    <!--@mbg.generated-->
+    delete from student
+    where student_id = #{studentId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="edu.hubu.commons.mybatis.model.Student">
+    <!--@mbg.generated-->
+    insert into student (student_id, student_enter_school_time, 
+      student_is_deleted, student_is_forbidden, student_name, 
+      student_password, student_token, student_faculty_id, 
+      student_major_id, student_role_id, student_class_id
+      )
+    values (#{studentId,jdbcType=VARCHAR}, #{studentEnterSchoolTime,jdbcType=TIMESTAMP}, 
+      #{studentIsDeleted,jdbcType=BOOLEAN}, #{studentIsForbidden,jdbcType=BOOLEAN}, #{studentName,jdbcType=VARCHAR}, 
+      #{studentPassword,jdbcType=VARCHAR}, #{studentToken,jdbcType=VARCHAR}, #{studentFacultyId,jdbcType=VARCHAR}, 
+      #{studentMajorId,jdbcType=VARCHAR}, #{studentRoleId,jdbcType=VARCHAR}, #{studentClassId,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="edu.hubu.commons.mybatis.model.Student">
+    <!--@mbg.generated-->
+    insert into student
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="studentId != null">
+        student_id,
+      </if>
+      <if test="studentEnterSchoolTime != null">
+        student_enter_school_time,
+      </if>
+      <if test="studentIsDeleted != null">
+        student_is_deleted,
+      </if>
+      <if test="studentIsForbidden != null">
+        student_is_forbidden,
+      </if>
+      <if test="studentName != null">
+        student_name,
+      </if>
+      <if test="studentPassword != null">
+        student_password,
+      </if>
+      <if test="studentToken != null">
+        student_token,
+      </if>
+      <if test="studentFacultyId != null">
+        student_faculty_id,
+      </if>
+      <if test="studentMajorId != null">
+        student_major_id,
+      </if>
+      <if test="studentRoleId != null">
+        student_role_id,
+      </if>
+      <if test="studentClassId != null">
+        student_class_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="studentId != null">
+        #{studentId,jdbcType=VARCHAR},
+      </if>
+      <if test="studentEnterSchoolTime != null">
+        #{studentEnterSchoolTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="studentIsDeleted != null">
+        #{studentIsDeleted,jdbcType=BOOLEAN},
+      </if>
+      <if test="studentIsForbidden != null">
+        #{studentIsForbidden,jdbcType=BOOLEAN},
+      </if>
+      <if test="studentName != null">
+        #{studentName,jdbcType=VARCHAR},
+      </if>
+      <if test="studentPassword != null">
+        #{studentPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="studentToken != null">
+        #{studentToken,jdbcType=VARCHAR},
+      </if>
+      <if test="studentFacultyId != null">
+        #{studentFacultyId,jdbcType=VARCHAR},
+      </if>
+      <if test="studentMajorId != null">
+        #{studentMajorId,jdbcType=VARCHAR},
+      </if>
+      <if test="studentRoleId != null">
+        #{studentRoleId,jdbcType=VARCHAR},
+      </if>
+      <if test="studentClassId != null">
+        #{studentClassId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="edu.hubu.commons.mybatis.model.Student">
+    <!--@mbg.generated-->
+    update student
+    <set>
+      <if test="studentEnterSchoolTime != null">
+        student_enter_school_time = #{studentEnterSchoolTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="studentIsDeleted != null">
+        student_is_deleted = #{studentIsDeleted,jdbcType=BOOLEAN},
+      </if>
+      <if test="studentIsForbidden != null">
+        student_is_forbidden = #{studentIsForbidden,jdbcType=BOOLEAN},
+      </if>
+      <if test="studentName != null">
+        student_name = #{studentName,jdbcType=VARCHAR},
+      </if>
+      <if test="studentPassword != null">
+        student_password = #{studentPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="studentToken != null">
+        student_token = #{studentToken,jdbcType=VARCHAR},
+      </if>
+      <if test="studentFacultyId != null">
+        student_faculty_id = #{studentFacultyId,jdbcType=VARCHAR},
+      </if>
+      <if test="studentMajorId != null">
+        student_major_id = #{studentMajorId,jdbcType=VARCHAR},
+      </if>
+      <if test="studentRoleId != null">
+        student_role_id = #{studentRoleId,jdbcType=VARCHAR},
+      </if>
+      <if test="studentClassId != null">
+        student_class_id = #{studentClassId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where student_id = #{studentId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="edu.hubu.commons.mybatis.model.Student">
+    <!--@mbg.generated-->
+    update student
+    set student_enter_school_time = #{studentEnterSchoolTime,jdbcType=TIMESTAMP},
+      student_is_deleted = #{studentIsDeleted,jdbcType=BOOLEAN},
+      student_is_forbidden = #{studentIsForbidden,jdbcType=BOOLEAN},
+      student_name = #{studentName,jdbcType=VARCHAR},
+      student_password = #{studentPassword,jdbcType=VARCHAR},
+      student_token = #{studentToken,jdbcType=VARCHAR},
+      student_faculty_id = #{studentFacultyId,jdbcType=VARCHAR},
+      student_major_id = #{studentMajorId,jdbcType=VARCHAR},
+      student_role_id = #{studentRoleId,jdbcType=VARCHAR},
+      student_class_id = #{studentClassId,jdbcType=VARCHAR}
+    where student_id = #{studentId,jdbcType=VARCHAR}
+  </update>
+</mapper>

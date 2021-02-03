@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.hubu.commons.mybatis.mapper.FacultyMapper">
+    <resultMap id="BaseResultMap" type="edu.hubu.commons.mybatis.model.Faculty">
+        <!--@mbg.generated-->
+        <!--@Table faculty-->
+        <id column="faculty_id" jdbcType="VARCHAR" property="facultyId"/>
+        <result column="faculty_is_deleted" jdbcType="BOOLEAN" property="facultyIsDeleted"/>
+        <result column="faculty_is_forbidden" jdbcType="BOOLEAN" property="facultyIsForbidden"/>
+        <result column="faculty_name" jdbcType="VARCHAR" property="facultyName"/>
+        <collection property="majors" ofType="edu.hubu.commons.mybatis.model.Major"
+                    resultMap="edu.hubu.commons.mybatis.mapper.MajorMapper.BaseResultMap"/>
+        <collection property="students" ofType="edu.hubu.commons.mybatis.model.Student"
+                    resultMap="edu.hubu.commons.mybatis.mapper.StudentMapper.BaseResultMap"/>
+        <collection property="teachers" ofType="edu.hubu.commons.mybatis.model.Teacher"
+                    resultMap="edu.hubu.commons.mybatis.mapper.TeacherMapper.BaseResultMap"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--@mbg.generated-->
+        faculty_id, faculty_is_deleted, faculty_is_forbidden, faculty_name
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+        <!--@mbg.generated-->
+        select
+        <include refid="Base_Column_List"/>
+        from faculty
+        where faculty_id = #{facultyId,jdbcType=VARCHAR}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+        <!--@mbg.generated-->
+        delete
+        from faculty
+        where faculty_id = #{facultyId,jdbcType=VARCHAR}
+    </delete>
+    <insert id="insert" parameterType="edu.hubu.commons.mybatis.model.Faculty">
+        <!--@mbg.generated-->
+        insert into faculty (faculty_id, faculty_is_deleted, faculty_is_forbidden,
+                             faculty_name)
+        values (#{facultyId,jdbcType=VARCHAR}, #{facultyIsDeleted,jdbcType=BOOLEAN},
+                #{facultyIsForbidden,jdbcType=BOOLEAN},
+                #{facultyName,jdbcType=VARCHAR})
+    </insert>
+    <insert id="insertSelective" parameterType="edu.hubu.commons.mybatis.model.Faculty">
+        <!--@mbg.generated-->
+        insert into faculty
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="facultyId != null">
+                faculty_id,
+            </if>
+            <if test="facultyIsDeleted != null">
+                faculty_is_deleted,
+            </if>
+            <if test="facultyIsForbidden != null">
+                faculty_is_forbidden,
+            </if>
+            <if test="facultyName != null">
+                faculty_name,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="facultyId != null">
+                #{facultyId,jdbcType=VARCHAR},
+            </if>
+            <if test="facultyIsDeleted != null">
+                #{facultyIsDeleted,jdbcType=BOOLEAN},
+            </if>
+            <if test="facultyIsForbidden != null">
+                #{facultyIsForbidden,jdbcType=BOOLEAN},
+            </if>
+            <if test="facultyName != null">
+                #{facultyName,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="edu.hubu.commons.mybatis.model.Faculty">
+        <!--@mbg.generated-->
+        update faculty
+        <set>
+            <if test="facultyIsDeleted != null">
+                faculty_is_deleted = #{facultyIsDeleted,jdbcType=BOOLEAN},
+            </if>
+            <if test="facultyIsForbidden != null">
+                faculty_is_forbidden = #{facultyIsForbidden,jdbcType=BOOLEAN},
+            </if>
+            <if test="facultyName != null">
+                faculty_name = #{facultyName,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where faculty_id = #{facultyId,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="edu.hubu.commons.mybatis.model.Faculty">
+        <!--@mbg.generated-->
+        update faculty
+        set faculty_is_deleted   = #{facultyIsDeleted,jdbcType=BOOLEAN},
+            faculty_is_forbidden = #{facultyIsForbidden,jdbcType=BOOLEAN},
+            faculty_name         = #{facultyName,jdbcType=VARCHAR}
+        where faculty_id = #{facultyId,jdbcType=VARCHAR}
+    </update>
+
+    <select id="selectLikePageOrderBy" resultMap="BaseResultMap">
+        select *
+        from faculty
+        <where>
+            <if test="param4.facultyId != null">
+                and faculty_id = #{param4.facultyId,jdbcType=VARCHAR}
+            </if>
+            <if test="param4.facultyName != null">
+                and faculty_name like CONCAT('%', #{param4.facultyName,jdbcType=VARCHAR}, '%')
+            </if>
+            <if test="param4.facultyIsDeleted != null">
+                and faculty_is_deleted = #{param4.facultyIsDeleted,jdbcType=BOOLEAN}
+            </if>
+            <if test="param4.facultyIsForbidden != null">
+                and faculty_is_forbidden = #{param4.facultyIsForbidden,jdbcType=BOOLEAN}
+            </if>
+        </where>
+    </select>
+</mapper>

@@ -1,0 +1,85 @@
+<select id="selectOneById" resultMap="BaseResultMap">
+    select *
+    from ${modelName}
+    <#list foreignKeys as key>
+        left join ${key} r on r.${key}_id = ${modelName}.${modelName}_${key}_id
+    </#list>
+    where ${modelName}_id = #{id}
+</select>
+<select id="selectAllOrderBy" resultMap="BaseResultMap">
+    select * from ${modelName}
+    <#list foreignKeys as key>
+        left join ${key} r on r.${key}_id = ${modelName}.${modelName}_${key}_id
+    </#list>
+    <if test="orderBy == null">
+        order by ${modelName}_id
+    </if>
+    <if test="orderBy != null">
+        order by #{orderBy}
+    </if>
+</select>
+<select id="selectAllPageOrderBy" resultMap="BaseResultMap">
+    select *
+    from ${modelName}
+    <#list foreignKeys as key>
+        left join ${key} r on r.${key}_id = ${modelName}.${modelName}_${key}_id
+    </#list>
+    <if test="limit == null or offset == null">
+        offset 0 limit 5
+    </if>
+    <if test="orderBy == null">
+        order by ${modelName}_id
+    </if>
+    <if test="orderBy != null">
+        order by #{orderBy}
+    </if>
+</select>
+<select id="selectLikePageOrderBy" resultMap="BaseResultMap">
+    select * from ${modelName}
+    left join role r on r.role_id = ${modelName}.${modelName}_role_id
+    <where>
+        <if test="${modelName}.${modelName}Id != null">
+            ${modelName}_id = #{${modelName}.${modelName}Id}
+        </if>
+
+        <if test="${modelName}.${modelName}Name != null">
+            and ${modelName}_name like CONCAT('%',#{${modelName}.${modelName}Name},'%')
+        </if>
+
+        <if test="${modelName}.${modelName}Token">
+            and ${modelName}_token = #{${modelName}.${modelName}Token}
+        </if>
+
+        <if test="${modelName}.${modelName}IsDeleted != null">
+            and ${modelName}_is_deleted = #{${modelName}.${modelName}IsDeleted}
+        </if>
+
+        <if test="${modelName}.${modelName}IsForbidden != null">
+            and ${modelName}_is_forbidden = #{${modelName}.${modelName}IsForbidden}
+        </if>
+
+        <if test="${modelName}.${modelName}RoleId != null">
+            and ${modelName}_role_id = #{${modelName}.${modelName}RoleId}
+        </if>
+
+        <#list foreignKeys as key>
+            <if test="${modelName}.${key} != null">
+                <if test="${modelName}.${key}.${keyProp} != null">
+                    and r.${key}_id = #{${modelName}.${key}.${key}Id}
+                </if>
+                <if test="${modelName}.${key}.${keyProp} != null">
+                    and r.role_name like CONCAT('%',#{${modelName}.${key}.${keyProp}},'%')
+                </if>
+            </if>
+        </#list>
+    </where>
+    <if test="limit == null or offset == null">
+        offset 0 limit 5
+    </if>
+    <if test="orderBy == null">
+        order by ${modelName}_id
+    </if>
+    <if test="orderBy != null">
+        order by #{orderBy}
+    </if>
+</select>

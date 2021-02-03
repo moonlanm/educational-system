@@ -1,0 +1,23 @@
+package edu.hubu.commons.service.${packageName}
+
+import edu.hubu.commons.model.${packageName}.${modelClassName};
+
+/**
+* @author moonlan
+* date 2021/1/25 下午2:07
+*/
+interface I${modelClassName}Service {
+    fun save(t: ${modelClassName}): ${modelClassName}
+    <#if isDeleted == true>
+    fun logicalDeleteById(id: String): Boolean
+    </#if>
+    fun deleteById(id: String): Boolean
+    fun updateById(id: String, t: ${modelClassName}): ${modelClassName}
+    <#if isDeleted == true>
+    fun forbidById(id: String): Boolean
+    </#if>
+    fun selectOneById(id: String): ${modelClassName}
+    fun selectAllOrderBy(order: String = "${modelName}Id"): List<${modelClassName}>
+    fun selectAllPageOrderBy(currentPage: Int = 1, pageSize: Int = 5, order: String = "${modelName}Id"): List<${modelClassName}>
+    fun selectLikePageOrderBy(currentPage: Int = 1, pageSize: Int = 5, order: String = "${modelName}Id", t: edu.hubu.commons.mybatis.model.${modelClassName}): List<edu.hubu.commons.mybatis.model.${modelClassName}>
+}

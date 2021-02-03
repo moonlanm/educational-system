@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.hubu.commons.mybatis.mapper.TermMapper">
+  <resultMap id="BaseResultMap" type="edu.hubu.commons.mybatis.model.Term">
+    <!--@mbg.generated-->
+    <!--@Table term-->
+    <id column="term_id" jdbcType="VARCHAR" property="termId" />
+    <result column="term_name" jdbcType="VARCHAR" property="termName" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    term_id, term_name
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from term
+    where term_id = #{termId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    <!--@mbg.generated-->
+    delete from term
+    where term_id = #{termId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="edu.hubu.commons.mybatis.model.Term">
+    <!--@mbg.generated-->
+    insert into term (term_id, term_name)
+    values (#{termId,jdbcType=VARCHAR}, #{termName,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.hubu.commons.mybatis.model.Term">
+    <!--@mbg.generated-->
+    insert into term
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="termId != null">
+        term_id,
+      </if>
+      <if test="termName != null">
+        term_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="termId != null">
+        #{termId,jdbcType=VARCHAR},
+      </if>
+      <if test="termName != null">
+        #{termName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="edu.hubu.commons.mybatis.model.Term">
+    <!--@mbg.generated-->
+    update term
+    <set>
+      <if test="termName != null">
+        term_name = #{termName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where term_id = #{termId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="edu.hubu.commons.mybatis.model.Term">
+    <!--@mbg.generated-->
+    update term
+    set term_name = #{termName,jdbcType=VARCHAR}
+    where term_id = #{termId,jdbcType=VARCHAR}
+  </update>
+</mapper>

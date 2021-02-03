@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.hubu.commons.mybatis.mapper.TeacherSelectCourseMapper">
+  <resultMap id="BaseResultMap" type="edu.hubu.commons.mybatis.model.TeacherSelectCourse">
+    <!--@mbg.generated-->
+    <!--@Table teacher_select_course-->
+    <id column="teacher_select_course_id" jdbcType="VARCHAR" property="teacherSelectCourseId" />
+    <result column="teacher_select_course_course_id" jdbcType="VARCHAR" property="teacherSelectCourseCourseId" />
+    <result column="teacher_select_course_teacher_id" jdbcType="VARCHAR" property="teacherSelectCourseTeacherId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    teacher_select_course_id, teacher_select_course_course_id, teacher_select_course_teacher_id
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from teacher_select_course
+    where teacher_select_course_id = #{teacherSelectCourseId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    <!--@mbg.generated-->
+    delete from teacher_select_course
+    where teacher_select_course_id = #{teacherSelectCourseId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="edu.hubu.commons.mybatis.model.TeacherSelectCourse">
+    <!--@mbg.generated-->
+    insert into teacher_select_course (teacher_select_course_id, teacher_select_course_course_id, 
+      teacher_select_course_teacher_id)
+    values (#{teacherSelectCourseId,jdbcType=VARCHAR}, #{teacherSelectCourseCourseId,jdbcType=VARCHAR}, 
+      #{teacherSelectCourseTeacherId,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.hubu.commons.mybatis.model.TeacherSelectCourse">
+    <!--@mbg.generated-->
+    insert into teacher_select_course
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="teacherSelectCourseId != null">
+        teacher_select_course_id,
+      </if>
+      <if test="teacherSelectCourseCourseId != null">
+        teacher_select_course_course_id,
+      </if>
+      <if test="teacherSelectCourseTeacherId != null">
+        teacher_select_course_teacher_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="teacherSelectCourseId != null">
+        #{teacherSelectCourseId,jdbcType=VARCHAR},
+      </if>
+      <if test="teacherSelectCourseCourseId != null">
+        #{teacherSelectCourseCourseId,jdbcType=VARCHAR},
+      </if>
+      <if test="teacherSelectCourseTeacherId != null">
+        #{teacherSelectCourseTeacherId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="edu.hubu.commons.mybatis.model.TeacherSelectCourse">
+    <!--@mbg.generated-->
+    update teacher_select_course
+    <set>
+      <if test="teacherSelectCourseCourseId != null">
+        teacher_select_course_course_id = #{teacherSelectCourseCourseId,jdbcType=VARCHAR},
+      </if>
+      <if test="teacherSelectCourseTeacherId != null">
+        teacher_select_course_teacher_id = #{teacherSelectCourseTeacherId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where teacher_select_course_id = #{teacherSelectCourseId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="edu.hubu.commons.mybatis.model.TeacherSelectCourse">
+    <!--@mbg.generated-->
+    update teacher_select_course
+    set teacher_select_course_course_id = #{teacherSelectCourseCourseId,jdbcType=VARCHAR},
+      teacher_select_course_teacher_id = #{teacherSelectCourseTeacherId,jdbcType=VARCHAR}
+    where teacher_select_course_id = #{teacherSelectCourseId,jdbcType=VARCHAR}
+  </update>
+</mapper>

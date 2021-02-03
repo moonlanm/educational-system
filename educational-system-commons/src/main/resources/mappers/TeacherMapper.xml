@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.hubu.commons.mybatis.mapper.TeacherMapper">
+  <resultMap id="BaseResultMap" type="edu.hubu.commons.mybatis.model.Teacher">
+    <!--@mbg.generated-->
+    <!--@Table teacher-->
+    <id column="teacher_id" jdbcType="VARCHAR" property="teacherId" />
+    <result column="teacher_enter_school_time" jdbcType="TIMESTAMP" property="teacherEnterSchoolTime" />
+    <result column="teacher_is_deleted" jdbcType="BOOLEAN" property="teacherIsDeleted" />
+    <result column="teacher_is_forbidden" jdbcType="BOOLEAN" property="teacherIsForbidden" />
+    <result column="teacher_name" jdbcType="VARCHAR" property="teacherName" />
+    <result column="teacher_password" jdbcType="VARCHAR" property="teacherPassword" />
+    <result column="teacher_token" jdbcType="VARCHAR" property="teacherToken" />
+    <result column="teacher_faculty_id" jdbcType="VARCHAR" property="teacherFacultyId" />
+    <result column="teacher_major_id" jdbcType="VARCHAR" property="teacherMajorId" />
+    <result column="teacher_role_id" jdbcType="VARCHAR" property="teacherRoleId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    teacher_id, teacher_enter_school_time, teacher_is_deleted, teacher_is_forbidden, 
+    teacher_name, teacher_password, teacher_token, teacher_faculty_id, teacher_major_id, 
+    teacher_role_id
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from teacher
+    where teacher_id = #{teacherId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    <!--@mbg.generated-->
+    delete from teacher
+    where teacher_id = #{teacherId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="edu.hubu.commons.mybatis.model.Teacher">
+    <!--@mbg.generated-->
+    insert into teacher (teacher_id, teacher_enter_school_time, 
+      teacher_is_deleted, teacher_is_forbidden, teacher_name, 
+      teacher_password, teacher_token, teacher_faculty_id, 
+      teacher_major_id, teacher_role_id)
+    values (#{teacherId,jdbcType=VARCHAR}, #{teacherEnterSchoolTime,jdbcType=TIMESTAMP}, 
+      #{teacherIsDeleted,jdbcType=BOOLEAN}, #{teacherIsForbidden,jdbcType=BOOLEAN}, #{teacherName,jdbcType=VARCHAR}, 
+      #{teacherPassword,jdbcType=VARCHAR}, #{teacherToken,jdbcType=VARCHAR}, #{teacherFacultyId,jdbcType=VARCHAR}, 
+      #{teacherMajorId,jdbcType=VARCHAR}, #{teacherRoleId,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.hubu.commons.mybatis.model.Teacher">
+    <!--@mbg.generated-->
+    insert into teacher
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="teacherId != null">
+        teacher_id,
+      </if>
+      <if test="teacherEnterSchoolTime != null">
+        teacher_enter_school_time,
+      </if>
+      <if test="teacherIsDeleted != null">
+        teacher_is_deleted,
+      </if>
+      <if test="teacherIsForbidden != null">
+        teacher_is_forbidden,
+      </if>
+      <if test="teacherName != null">
+        teacher_name,
+      </if>
+      <if test="teacherPassword != null">
+        teacher_password,
+      </if>
+      <if test="teacherToken != null">
+        teacher_token,
+      </if>
+      <if test="teacherFacultyId != null">
+        teacher_faculty_id,
+      </if>
+      <if test="teacherMajorId != null">
+        teacher_major_id,
+      </if>
+      <if test="teacherRoleId != null">
+        teacher_role_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="teacherId != null">
+        #{teacherId,jdbcType=VARCHAR},
+      </if>
+      <if test="teacherEnterSchoolTime != null">
+        #{teacherEnterSchoolTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="teacherIsDeleted != null">
+        #{teacherIsDeleted,jdbcType=BOOLEAN},
+      </if>
+      <if test="teacherIsForbidden != null">
+        #{teacherIsForbidden,jdbcType=BOOLEAN},
+      </if>
+      <if test="teacherName != null">
+        #{teacherName,jdbcType=VARCHAR},
+      </if>
+      <if test="teacherPassword != null">
+        #{teacherPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="teacherToken != null">
+        #{teacherToken,jdbcType=VARCHAR},
+      </if>
+      <if test="teacherFacultyId != null">
+        #{teacherFacultyId,jdbcType=VARCHAR},
+      </if>
+      <if test="teacherMajorId != null">
+        #{teacherMajorId,jdbcType=VARCHAR},
+      </if>
+      <if test="teacherRoleId != null">
+        #{teacherRoleId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="edu.hubu.commons.mybatis.model.Teacher">
+    <!--@mbg.generated-->
+    update teacher
+    <set>
+      <if test="teacherEnterSchoolTime != null">
+        teacher_enter_school_time = #{teacherEnterSchoolTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="teacherIsDeleted != null">
+        teacher_is_deleted = #{teacherIsDeleted,jdbcType=BOOLEAN},
+      </if>
+      <if test="teacherIsForbidden != null">
+        teacher_is_forbidden = #{teacherIsForbidden,jdbcType=BOOLEAN},
+      </if>
+      <if test="teacherName != null">
+        teacher_name = #{teacherName,jdbcType=VARCHAR},
+      </if>
+      <if test="teacherPassword != null">
+        teacher_password = #{teacherPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="teacherToken != null">
+        teacher_token = #{teacherToken,jdbcType=VARCHAR},
+      </if>
+      <if test="teacherFacultyId != null">
+        teacher_faculty_id = #{teacherFacultyId,jdbcType=VARCHAR},
+      </if>
+      <if test="teacherMajorId != null">
+        teacher_major_id = #{teacherMajorId,jdbcType=VARCHAR},
+      </if>
+      <if test="teacherRoleId != null">
+        teacher_role_id = #{teacherRoleId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where teacher_id = #{teacherId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="edu.hubu.commons.mybatis.model.Teacher">
+    <!--@mbg.generated-->
+    update teacher
+    set teacher_enter_school_time = #{teacherEnterSchoolTime,jdbcType=TIMESTAMP},
+      teacher_is_deleted = #{teacherIsDeleted,jdbcType=BOOLEAN},
+      teacher_is_forbidden = #{teacherIsForbidden,jdbcType=BOOLEAN},
+      teacher_name = #{teacherName,jdbcType=VARCHAR},
+      teacher_password = #{teacherPassword,jdbcType=VARCHAR},
+      teacher_token = #{teacherToken,jdbcType=VARCHAR},
+      teacher_faculty_id = #{teacherFacultyId,jdbcType=VARCHAR},
+      teacher_major_id = #{teacherMajorId,jdbcType=VARCHAR},
+      teacher_role_id = #{teacherRoleId,jdbcType=VARCHAR}
+    where teacher_id = #{teacherId,jdbcType=VARCHAR}
+  </update>
+</mapper>

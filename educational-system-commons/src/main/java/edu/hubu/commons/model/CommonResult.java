@@ -9,7 +9,7 @@ public class CommonResult {
     private int code;
     private String message;
     private int currentPage;
-    private int totalPages;
+    private int total;
     private Object data;
 
     public int getCode() {
@@ -39,12 +39,12 @@ public class CommonResult {
         return this;
     }
 
-    public int getTotalPages() {
-        return totalPages;
+    public int getTotal() {
+        return total;
     }
 
-    public CommonResult setTotalPages(int totalPages) {
-        this.totalPages = totalPages;
+    public CommonResult setTotal(int total) {
+        this.total = total;
         return this;
     }
 

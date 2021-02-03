@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.hubu.commons.mybatis.mapper.TeacherCourseMapper">
+  <resultMap id="BaseResultMap" type="edu.hubu.commons.mybatis.model.TeacherCourse">
+    <!--@mbg.generated-->
+    <!--@Table teacher_course-->
+    <id column="teacher_course_id" jdbcType="VARCHAR" property="teacherCourseId" />
+    <result column="teacher_course_credit" jdbcType="VARCHAR" property="teacherCourseCredit" />
+    <result column="teacher_course_hour" jdbcType="BIGINT" property="teacherCourseHour" />
+    <result column="teacher_id" jdbcType="VARCHAR" property="teacherId" />
+    <result column="teacher_select_course_id" jdbcType="VARCHAR" property="teacherSelectCourseId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    teacher_course_id, teacher_course_credit, teacher_course_hour, teacher_id, teacher_select_course_id
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from teacher_course
+    where teacher_course_id = #{teacherCourseId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    <!--@mbg.generated-->
+    delete from teacher_course
+    where teacher_course_id = #{teacherCourseId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="edu.hubu.commons.mybatis.model.TeacherCourse">
+    <!--@mbg.generated-->
+    insert into teacher_course (teacher_course_id, teacher_course_credit, 
+      teacher_course_hour, teacher_id, teacher_select_course_id
+      )
+    values (#{teacherCourseId,jdbcType=VARCHAR}, #{teacherCourseCredit,jdbcType=VARCHAR}, 
+      #{teacherCourseHour,jdbcType=BIGINT}, #{teacherId,jdbcType=VARCHAR}, #{teacherSelectCourseId,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="edu.hubu.commons.mybatis.model.TeacherCourse">
+    <!--@mbg.generated-->
+    insert into teacher_course
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="teacherCourseId != null">
+        teacher_course_id,
+      </if>
+      <if test="teacherCourseCredit != null">
+        teacher_course_credit,
+      </if>
+      <if test="teacherCourseHour != null">
+        teacher_course_hour,
+      </if>
+      <if test="teacherId != null">
+        teacher_id,
+      </if>
+      <if test="teacherSelectCourseId != null">
+        teacher_select_course_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="teacherCourseId != null">
+        #{teacherCourseId,jdbcType=VARCHAR},
+      </if>
+      <if test="teacherCourseCredit != null">
+        #{teacherCourseCredit,jdbcType=VARCHAR},
+      </if>
+      <if test="teacherCourseHour != null">
+        #{teacherCourseHour,jdbcType=BIGINT},
+      </if>
+      <if test="teacherId != null">
+        #{teacherId,jdbcType=VARCHAR},
+      </if>
+      <if test="teacherSelectCourseId != null">
+        #{teacherSelectCourseId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="edu.hubu.commons.mybatis.model.TeacherCourse">
+    <!--@mbg.generated-->
+    update teacher_course
+    <set>
+      <if test="teacherCourseCredit != null">
+        teacher_course_credit = #{teacherCourseCredit,jdbcType=VARCHAR},
+      </if>
+      <if test="teacherCourseHour != null">
+        teacher_course_hour = #{teacherCourseHour,jdbcType=BIGINT},
+      </if>
+      <if test="teacherId != null">
+        teacher_id = #{teacherId,jdbcType=VARCHAR},
+      </if>
+      <if test="teacherSelectCourseId != null">
+        teacher_select_course_id = #{teacherSelectCourseId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where teacher_course_id = #{teacherCourseId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="edu.hubu.commons.mybatis.model.TeacherCourse">
+    <!--@mbg.generated-->
+    update teacher_course
+    set teacher_course_credit = #{teacherCourseCredit,jdbcType=VARCHAR},
+      teacher_course_hour = #{teacherCourseHour,jdbcType=BIGINT},
+      teacher_id = #{teacherId,jdbcType=VARCHAR},
+      teacher_select_course_id = #{teacherSelectCourseId,jdbcType=VARCHAR}
+    where teacher_course_id = #{teacherCourseId,jdbcType=VARCHAR}
+  </update>
+</mapper>

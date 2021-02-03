@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.hubu.commons.mybatis.mapper.AdminMapper">
+    <resultMap id="BaseResultMap" type="edu.hubu.commons.mybatis.model.Admin">
+        <!--@mbg.generated-->
+        <!--@Table "admin"-->
+        <id column="admin_id" jdbcType="VARCHAR" property="adminId"/>
+        <result column="admin_is_deleted" jdbcType="BOOLEAN" property="adminIsDeleted"/>
+        <result column="admin_is_forbidden" jdbcType="BOOLEAN" property="adminIsForbidden"/>
+        <result column="admin_name" jdbcType="VARCHAR" property="adminName"/>
+        <result column="admin_password" jdbcType="VARCHAR" property="adminPassword"/>
+        <result column="admin_token" jdbcType="VARCHAR" property="adminToken"/>
+        <result column="admin_role_id" jdbcType="VARCHAR" property="adminRoleId"/>
+        <association property="role" javaType="edu.hubu.commons.mybatis.model.Role"
+                     resultMap="edu.hubu.commons.mybatis.mapper.RoleMapper.BaseResultMap"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--@mbg.generated-->
+        admin_id, admin_is_deleted, admin_is_forbidden, admin_name, admin_password, admin_token,
+        admin_role_id
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+        <!--@mbg.generated-->
+        select
+        <include refid="Base_Column_List"/>
+        from "admin"
+        where admin_id = #{adminId,jdbcType=VARCHAR}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+        <!--@mbg.generated-->
+        delete
+        from "admin"
+        where admin_id = #{adminId,jdbcType=VARCHAR}
+    </delete>
+    <insert id="insert" parameterType="edu.hubu.commons.mybatis.model.Admin">
+        <!--@mbg.generated-->
+        insert into "admin" (admin_id, admin_is_deleted, admin_is_forbidden,
+                             admin_name, admin_password, admin_token,
+                             admin_role_id)
+        values (#{adminId,jdbcType=VARCHAR}, #{adminIsDeleted,jdbcType=BOOLEAN}, #{adminIsForbidden,jdbcType=BOOLEAN},
+                #{adminName,jdbcType=VARCHAR}, #{adminPassword,jdbcType=VARCHAR}, #{adminToken,jdbcType=VARCHAR},
+                #{adminRoleId,jdbcType=VARCHAR})
+    </insert>
+    <insert id="insertSelective" parameterType="edu.hubu.commons.mybatis.model.Admin">
+        <!--@mbg.generated-->
+        insert into "admin"
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="adminId != null">
+                admin_id,
+            </if>
+            <if test="adminIsDeleted != null">
+                admin_is_deleted,
+            </if>
+            <if test="adminIsForbidden != null">
+                admin_is_forbidden,
+            </if>
+            <if test="adminName != null">
+                admin_name,
+            </if>
+            <if test="adminPassword != null">
+                admin_password,
+            </if>
+            <if test="adminToken != null">
+                admin_token,
+            </if>
+            <if test="adminRoleId != null">
+                admin_role_id,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="adminId != null">
+                #{adminId,jdbcType=VARCHAR},
+            </if>
+            <if test="adminIsDeleted != null">
+                #{adminIsDeleted,jdbcType=BOOLEAN},
+            </if>
+            <if test="adminIsForbidden != null">
+                #{adminIsForbidden,jdbcType=BOOLEAN},
+            </if>
+            <if test="adminName != null">
+                #{adminName,jdbcType=VARCHAR},
+            </if>
+            <if test="adminPassword != null">
+                #{adminPassword,jdbcType=VARCHAR},
+            </if>
+            <if test="adminToken != null">
+                #{adminToken,jdbcType=VARCHAR},
+            </if>
+            <if test="adminRoleId != null">
+                #{adminRoleId,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="edu.hubu.commons.mybatis.model.Admin">
+        <!--@mbg.generated-->
+        update "admin"
+        <set>
+            <if test="adminIsDeleted != null">
+                admin_is_deleted = #{adminIsDeleted,jdbcType=BOOLEAN},
+            </if>
+            <if test="adminIsForbidden != null">
+                admin_is_forbidden = #{adminIsForbidden,jdbcType=BOOLEAN},
+            </if>
+            <if test="adminName != null">
+                admin_name = #{adminName,jdbcType=VARCHAR},
+            </if>
+            <if test="adminPassword != null">
+                admin_password = #{adminPassword,jdbcType=VARCHAR},
+            </if>
+            <if test="adminToken != null">
+                admin_token = #{adminToken,jdbcType=VARCHAR},
+            </if>
+            <if test="adminRoleId != null">
+                admin_role_id = #{adminRoleId,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where admin_id = #{adminId,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="edu.hubu.commons.mybatis.model.Admin">
+        <!--@mbg.generated-->
+        update "admin"
+        set admin_is_deleted   = #{adminIsDeleted,jdbcType=BOOLEAN},
+            admin_is_forbidden = #{adminIsForbidden,jdbcType=BOOLEAN},
+            admin_name         = #{adminName,jdbcType=VARCHAR},
+            admin_password     = #{adminPassword,jdbcType=VARCHAR},
+            admin_token        = #{adminToken,jdbcType=VARCHAR},
+            admin_role_id      = #{adminRoleId,jdbcType=VARCHAR}
+        where admin_id = #{adminId,jdbcType=VARCHAR}
+    </update>
+
+    <select id="selectLikePageOrderBy" resultMap="BaseResultMap">
+        select *
+        from admin
+                     left join role r on r.role_id = admin.admin_role_id
+        <where>
+            <if test="param4.adminId != null">
+                and admin_id = #{param4.adminId}
+            </if>
+            <if test="param4.adminName != null">
+                and admin_name like CONCAT('%', #{param4.adminName}, '%')
+            </if>
+            <if test="param4.adminIsDeleted != null">
+                and admin_is_deleted = #{param4.adminIsDeleted}
+            </if>
+            <if test="param4.adminIsForbidden != null">
+                and admin_is_forbidden = #{param4.adminIsForbidden}
+            </if>
+            <if test="param4.adminRoleId != null">
+                and admin_role_id = #{param4.adminRoleId}
+            </if>
+            <if test="param4.role != null">
+                <if test="param4.role.roleId != null">
+                    and r.role_id = #{param4.role.roleId}
+                </if>
+                <if test="param4.role.roleName != null">
+                    and r.role_name like CONCAT('%', #{param4.role.roleName}, '%')
+                </if>
+            </if>
+        </where>
+        order by #{param3}
+        offset #{param1} limit #{param2}
+    </select>
+</mapper>

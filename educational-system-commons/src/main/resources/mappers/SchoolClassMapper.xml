@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.hubu.commons.mybatis.mapper.SchoolClassMapper">
+  <resultMap id="BaseResultMap" type="edu.hubu.commons.mybatis.model.SchoolClass">
+    <!--@mbg.generated-->
+    <!--@Table school_class-->
+    <id column="school_class_id" jdbcType="VARCHAR" property="schoolClassId" />
+    <result column="school_class_is_deleted" jdbcType="BOOLEAN" property="schoolClassIsDeleted" />
+    <result column="school_class_is_forbidden" jdbcType="BOOLEAN" property="schoolClassIsForbidden" />
+    <result column="school_class_name" jdbcType="VARCHAR" property="schoolClassName" />
+    <result column="school_class_faculty_id" jdbcType="VARCHAR" property="schoolClassFacultyId" />
+    <result column="school_class_major_id" jdbcType="VARCHAR" property="schoolClassMajorId" />
+    <result column="school_class_teacher_id" jdbcType="VARCHAR" property="schoolClassTeacherId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    school_class_id, school_class_is_deleted, school_class_is_forbidden, school_class_name, 
+    school_class_faculty_id, school_class_major_id, school_class_teacher_id
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from school_class
+    where school_class_id = #{schoolClassId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    <!--@mbg.generated-->
+    delete from school_class
+    where school_class_id = #{schoolClassId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="edu.hubu.commons.mybatis.model.SchoolClass">
+    <!--@mbg.generated-->
+    insert into school_class (school_class_id, school_class_is_deleted, 
+      school_class_is_forbidden, school_class_name, 
+      school_class_faculty_id, school_class_major_id, 
+      school_class_teacher_id)
+    values (#{schoolClassId,jdbcType=VARCHAR}, #{schoolClassIsDeleted,jdbcType=BOOLEAN}, 
+      #{schoolClassIsForbidden,jdbcType=BOOLEAN}, #{schoolClassName,jdbcType=VARCHAR}, 
+      #{schoolClassFacultyId,jdbcType=VARCHAR}, #{schoolClassMajorId,jdbcType=VARCHAR}, 
+      #{schoolClassTeacherId,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.hubu.commons.mybatis.model.SchoolClass">
+    <!--@mbg.generated-->
+    insert into school_class
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="schoolClassId != null">
+        school_class_id,
+      </if>
+      <if test="schoolClassIsDeleted != null">
+        school_class_is_deleted,
+      </if>
+      <if test="schoolClassIsForbidden != null">
+        school_class_is_forbidden,
+      </if>
+      <if test="schoolClassName != null">
+        school_class_name,
+      </if>
+      <if test="schoolClassFacultyId != null">
+        school_class_faculty_id,
+      </if>
+      <if test="schoolClassMajorId != null">
+        school_class_major_id,
+      </if>
+      <if test="schoolClassTeacherId != null">
+        school_class_teacher_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="schoolClassId != null">
+        #{schoolClassId,jdbcType=VARCHAR},
+      </if>
+      <if test="schoolClassIsDeleted != null">
+        #{schoolClassIsDeleted,jdbcType=BOOLEAN},
+      </if>
+      <if test="schoolClassIsForbidden != null">
+        #{schoolClassIsForbidden,jdbcType=BOOLEAN},
+      </if>
+      <if test="schoolClassName != null">
+        #{schoolClassName,jdbcType=VARCHAR},
+      </if>
+      <if test="schoolClassFacultyId != null">
+        #{schoolClassFacultyId,jdbcType=VARCHAR},
+      </if>
+      <if test="schoolClassMajorId != null">
+        #{schoolClassMajorId,jdbcType=VARCHAR},
+      </if>
+      <if test="schoolClassTeacherId != null">
+        #{schoolClassTeacherId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="edu.hubu.commons.mybatis.model.SchoolClass">
+    <!--@mbg.generated-->
+    update school_class
+    <set>
+      <if test="schoolClassIsDeleted != null">
+        school_class_is_deleted = #{schoolClassIsDeleted,jdbcType=BOOLEAN},
+      </if>
+      <if test="schoolClassIsForbidden != null">
+        school_class_is_forbidden = #{schoolClassIsForbidden,jdbcType=BOOLEAN},
+      </if>
+      <if test="schoolClassName != null">
+        school_class_name = #{schoolClassName,jdbcType=VARCHAR},
+      </if>
+      <if test="schoolClassFacultyId != null">
+        school_class_faculty_id = #{schoolClassFacultyId,jdbcType=VARCHAR},
+      </if>
+      <if test="schoolClassMajorId != null">
+        school_class_major_id = #{schoolClassMajorId,jdbcType=VARCHAR},
+      </if>
+      <if test="schoolClassTeacherId != null">
+        school_class_teacher_id = #{schoolClassTeacherId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where school_class_id = #{schoolClassId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="edu.hubu.commons.mybatis.model.SchoolClass">
+    <!--@mbg.generated-->
+    update school_class
+    set school_class_is_deleted = #{schoolClassIsDeleted,jdbcType=BOOLEAN},
+      school_class_is_forbidden = #{schoolClassIsForbidden,jdbcType=BOOLEAN},
+      school_class_name = #{schoolClassName,jdbcType=VARCHAR},
+      school_class_faculty_id = #{schoolClassFacultyId,jdbcType=VARCHAR},
+      school_class_major_id = #{schoolClassMajorId,jdbcType=VARCHAR},
+      school_class_teacher_id = #{schoolClassTeacherId,jdbcType=VARCHAR}
+    where school_class_id = #{schoolClassId,jdbcType=VARCHAR}
+  </update>
+</mapper>

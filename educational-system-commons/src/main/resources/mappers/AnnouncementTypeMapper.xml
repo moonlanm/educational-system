@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.hubu.commons.mybatis.mapper.AnnouncementTypeMapper">
+    <resultMap id="BaseResultMap" type="edu.hubu.commons.mybatis.model.AnnouncementType">
+        <!--@mbg.generated-->
+        <!--@Table announcement_type-->
+        <id column="announcement_type_id" jdbcType="VARCHAR" property="announcementTypeId"/>
+        <result column="announcement_type_is_deleted" jdbcType="BOOLEAN" property="announcementTypeIsDeleted"/>
+        <result column="announcement_type_is_forbidden" jdbcType="BOOLEAN" property="announcementTypeIsForbidden"/>
+        <result column="announcement_type_name" jdbcType="VARCHAR" property="announcementTypeName"/>
+        <collection property="announcements" ofType="edu.hubu.commons.mybatis.model.Announcement"
+                    resultMap="edu.hubu.commons.mybatis.mapper.AnnouncementMapper.BaseResultMap"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--@mbg.generated-->
+        announcement_type_id, announcement_type_is_deleted, announcement_type_is_forbidden,
+        announcement_type_name
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+        <!--@mbg.generated-->
+        select
+        <include refid="Base_Column_List"/>
+        from announcement_type
+        where announcement_type_id = #{announcementTypeId,jdbcType=VARCHAR}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+        <!--@mbg.generated-->
+        delete
+        from announcement_type
+        where announcement_type_id = #{announcementTypeId,jdbcType=VARCHAR}
+    </delete>
+    <insert id="insert" parameterType="edu.hubu.commons.mybatis.model.AnnouncementType">
+        <!--@mbg.generated-->
+        insert into announcement_type (announcement_type_id, announcement_type_is_deleted,
+                                       announcement_type_is_forbidden, announcement_type_name)
+        values (#{announcementTypeId,jdbcType=VARCHAR}, #{announcementTypeIsDeleted,jdbcType=BOOLEAN},
+                #{announcementTypeIsForbidden,jdbcType=BOOLEAN}, #{announcementTypeName,jdbcType=VARCHAR})
+    </insert>
+    <insert id="insertSelective" parameterType="edu.hubu.commons.mybatis.model.AnnouncementType">
+        <!--@mbg.generated-->
+        insert into announcement_type
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="announcementTypeId != null">
+                announcement_type_id,
+            </if>
+            <if test="announcementTypeIsDeleted != null">
+                announcement_type_is_deleted,
+            </if>
+            <if test="announcementTypeIsForbidden != null">
+                announcement_type_is_forbidden,
+            </if>
+            <if test="announcementTypeName != null">
+                announcement_type_name,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="announcementTypeId != null">
+                #{announcementTypeId,jdbcType=VARCHAR},
+            </if>
+            <if test="announcementTypeIsDeleted != null">
+                #{announcementTypeIsDeleted,jdbcType=BOOLEAN},
+            </if>
+            <if test="announcementTypeIsForbidden != null">
+                #{announcementTypeIsForbidden,jdbcType=BOOLEAN},
+            </if>
+            <if test="announcementTypeName != null">
+                #{announcementTypeName,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="edu.hubu.commons.mybatis.model.AnnouncementType">
+        <!--@mbg.generated-->
+        update announcement_type
+        <set>
+            <if test="announcementTypeIsDeleted != null">
+                announcement_type_is_deleted = #{announcementTypeIsDeleted,jdbcType=BOOLEAN},
+            </if>
+            <if test="announcementTypeIsForbidden != null">
+                announcement_type_is_forbidden = #{announcementTypeIsForbidden,jdbcType=BOOLEAN},
+            </if>
+            <if test="announcementTypeName != null">
+                announcement_type_name = #{announcementTypeName,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where announcement_type_id = #{announcementTypeId,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="edu.hubu.commons.mybatis.model.AnnouncementType">
+        <!--@mbg.generated-->
+        update announcement_type
+        set announcement_type_is_deleted   = #{announcementTypeIsDeleted,jdbcType=BOOLEAN},
+            announcement_type_is_forbidden = #{announcementTypeIsForbidden,jdbcType=BOOLEAN},
+            announcement_type_name         = #{announcementTypeName,jdbcType=VARCHAR}
+        where announcement_type_id = #{announcementTypeId,jdbcType=VARCHAR}
+    </update>
+
+    <select id="selectLikePageOrderBy" resultMap="BaseResultMap">
+        select *
+        from announcement_type
+                     left join announcement a
+                on announcement_type.announcement_type_id = a.announcement_announcement_type_id
+        <where>
+            <if test="param4.announcementTypeId != null">
+                and announcement_type_id = #{param4.announcementTypeId}
+            </if>
+            <if test="param4.announcementTypeName != null">
+                and announcement_type_name like CONCAT('%', #{param4.announcementTypeName}, '%')
+            </if>
+            <if test="param4.announcementTypeIsDeleted != null">
+                and announcement_type_is_deleted = #{param4.announcementTypeIsDeleted}
+            </if>
+            <if test="param4.announcementTypeIsForbidden != null">
+                and announcement_type_is_forbidden = #{param4.announcementTypeIsForbidden}
+            </if>
+        </where>
+        order by #{param3}
+        offset #{param1} limit #{param2}
+    </select>
+</mapper>

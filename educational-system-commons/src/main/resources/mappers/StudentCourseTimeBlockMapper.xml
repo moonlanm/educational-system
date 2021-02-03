@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.hubu.commons.mybatis.mapper.StudentCourseTimeBlockMapper">
+  <resultMap id="BaseResultMap" type="edu.hubu.commons.mybatis.model.StudentCourseTimeBlock">
+    <!--@mbg.generated-->
+    <!--@Table student_course_time_block-->
+    <id column="student_course_time_block_id" jdbcType="VARCHAR" property="studentCourseTimeBlockId" />
+    <result column="student_course_time_block_student_course_id" jdbcType="VARCHAR" property="studentCourseTimeBlockStudentCourseId" />
+    <result column="student_course_time_block_time_block_id" jdbcType="VARCHAR" property="studentCourseTimeBlockTimeBlockId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    student_course_time_block_id, student_course_time_block_student_course_id, student_course_time_block_time_block_id
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from student_course_time_block
+    where student_course_time_block_id = #{studentCourseTimeBlockId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    <!--@mbg.generated-->
+    delete from student_course_time_block
+    where student_course_time_block_id = #{studentCourseTimeBlockId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="edu.hubu.commons.mybatis.model.StudentCourseTimeBlock">
+    <!--@mbg.generated-->
+    insert into student_course_time_block (student_course_time_block_id, student_course_time_block_student_course_id, 
+      student_course_time_block_time_block_id)
+    values (#{studentCourseTimeBlockId,jdbcType=VARCHAR}, #{studentCourseTimeBlockStudentCourseId,jdbcType=VARCHAR}, 
+      #{studentCourseTimeBlockTimeBlockId,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.hubu.commons.mybatis.model.StudentCourseTimeBlock">
+    <!--@mbg.generated-->
+    insert into student_course_time_block
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="studentCourseTimeBlockId != null">
+        student_course_time_block_id,
+      </if>
+      <if test="studentCourseTimeBlockStudentCourseId != null">
+        student_course_time_block_student_course_id,
+      </if>
+      <if test="studentCourseTimeBlockTimeBlockId != null">
+        student_course_time_block_time_block_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="studentCourseTimeBlockId != null">
+        #{studentCourseTimeBlockId,jdbcType=VARCHAR},
+      </if>
+      <if test="studentCourseTimeBlockStudentCourseId != null">
+        #{studentCourseTimeBlockStudentCourseId,jdbcType=VARCHAR},
+      </if>
+      <if test="studentCourseTimeBlockTimeBlockId != null">
+        #{studentCourseTimeBlockTimeBlockId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="edu.hubu.commons.mybatis.model.StudentCourseTimeBlock">
+    <!--@mbg.generated-->
+    update student_course_time_block
+    <set>
+      <if test="studentCourseTimeBlockStudentCourseId != null">
+        student_course_time_block_student_course_id = #{studentCourseTimeBlockStudentCourseId,jdbcType=VARCHAR},
+      </if>
+      <if test="studentCourseTimeBlockTimeBlockId != null">
+        student_course_time_block_time_block_id = #{studentCourseTimeBlockTimeBlockId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where student_course_time_block_id = #{studentCourseTimeBlockId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="edu.hubu.commons.mybatis.model.StudentCourseTimeBlock">
+    <!--@mbg.generated-->
+    update student_course_time_block
+    set student_course_time_block_student_course_id = #{studentCourseTimeBlockStudentCourseId,jdbcType=VARCHAR},
+      student_course_time_block_time_block_id = #{studentCourseTimeBlockTimeBlockId,jdbcType=VARCHAR}
+    where student_course_time_block_id = #{studentCourseTimeBlockId,jdbcType=VARCHAR}
+  </update>
+</mapper>

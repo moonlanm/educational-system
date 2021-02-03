@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.hubu.commons.mybatis.mapper.CourseMapper">
+    <resultMap id="BaseResultMap" type="edu.hubu.commons.mybatis.model.Course">
+        <!--@mbg.generated-->
+        <!--@Table course-->
+        <id column="course_id" jdbcType="VARCHAR" property="courseId"/>
+        <result column="course_is_deleted" jdbcType="BOOLEAN" property="courseIsDeleted"/>
+        <result column="course_is_forbidden" jdbcType="BOOLEAN" property="courseIsForbidden"/>
+        <result column="course_name" jdbcType="VARCHAR" property="courseName"/>
+        <collection property="scores" ofType="edu.hubu.commons.mybatis.model.Score"
+                    resultMap="edu.hubu.commons.mybatis.mapper.ScoreMapper.BaseResultMap"/>
+        <collection property="teacherSelectCourses" ofType="edu.hubu.commons.mybatis.model.TeacherSelectCourse"
+                    resultMap="edu.hubu.commons.mybatis.mapper.TeacherSelectCourseMapper.BaseResultMap"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--@mbg.generated-->
+        course_id, course_is_deleted, course_is_forbidden, course_name
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+        <!--@mbg.generated-->
+        select
+        <include refid="Base_Column_List"/>
+        from course
+        where course_id = #{courseId,jdbcType=VARCHAR}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+        <!--@mbg.generated-->
+        delete
+        from course
+        where course_id = #{courseId,jdbcType=VARCHAR}
+    </delete>
+    <insert id="insert" parameterType="edu.hubu.commons.mybatis.model.Course">
+        <!--@mbg.generated-->
+        insert into course (course_id, course_is_deleted, course_is_forbidden,
+                            course_name)
+        values (#{courseId,jdbcType=VARCHAR}, #{courseIsDeleted,jdbcType=BOOLEAN},
+                #{courseIsForbidden,jdbcType=BOOLEAN},
+                #{courseName,jdbcType=VARCHAR})
+    </insert>
+    <insert id="insertSelective" parameterType="edu.hubu.commons.mybatis.model.Course">
+        <!--@mbg.generated-->
+        insert into course
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="courseId != null">
+                course_id,
+            </if>
+            <if test="courseIsDeleted != null">
+                course_is_deleted,
+            </if>
+            <if test="courseIsForbidden != null">
+                course_is_forbidden,
+            </if>
+            <if test="courseName != null">
+                course_name,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="courseId != null">
+                #{courseId,jdbcType=VARCHAR},
+            </if>
+            <if test="courseIsDeleted != null">
+                #{courseIsDeleted,jdbcType=BOOLEAN},
+            </if>
+            <if test="courseIsForbidden != null">
+                #{courseIsForbidden,jdbcType=BOOLEAN},
+            </if>
+            <if test="courseName != null">
+                #{courseName,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="edu.hubu.commons.mybatis.model.Course">
+        <!--@mbg.generated-->
+        update course
+        <set>
+            <if test="courseIsDeleted != null">
+                course_is_deleted = #{courseIsDeleted,jdbcType=BOOLEAN},
+            </if>
+            <if test="courseIsForbidden != null">
+                course_is_forbidden = #{courseIsForbidden,jdbcType=BOOLEAN},
+            </if>
+            <if test="courseName != null">
+                course_name = #{courseName,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where course_id = #{courseId,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="edu.hubu.commons.mybatis.model.Course">
+        <!--@mbg.generated-->
+        update course
+        set course_is_deleted   = #{courseIsDeleted,jdbcType=BOOLEAN},
+            course_is_forbidden = #{courseIsForbidden,jdbcType=BOOLEAN},
+            course_name         = #{courseName,jdbcType=VARCHAR}
+        where course_id = #{courseId,jdbcType=VARCHAR}
+    </update>
+
+    <select id="selectLikePageOrderBy" resultMap="BaseResultMap">
+        select *
+        from course
+                     left join score s on course.course_id = s.score_student_course_id
+                     left join teacher_select_course tsc on course.course_id = tsc.teacher_select_course_course_id
+        <where>
+            <if test="param4.courseId != null">
+                and course_id = #{param4.courseId,jdbcType=VARCHAR}
+            </if>
+            <if test="param4.courseIsDeleted != null">
+                and course_is_deleted = #{param4.courseIsDeleted,jdbcType=BOOLEAN}
+            </if>
+            <if test="param4.courseIsForbidden != null">
+                and course_is_forbidden = #{param4.courseIsForbidden,jdbcType=BOOLEAN}
+            </if>
+            <if test="param4.courseName != null">
+                and course_name like CONCAT('%', #{param4.courseName,jdbcType=VARCHAR}, '%')
+            </if>
+        </where>
+    </select>
+</mapper>

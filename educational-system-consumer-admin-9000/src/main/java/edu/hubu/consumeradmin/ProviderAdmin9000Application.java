@@ -1,5 +1,6 @@
 package edu.hubu.consumeradmin;
 
+import edu.hubu.commons.annotations.EnableCommons;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
@@ -10,11 +11,8 @@ import org.springframework.context.annotation.ComponentScans;
  * date 2021/1/25 下午4:03
  */
 @SuppressWarnings(value = "unused")
-@SpringBootApplication
-@ComponentScans(value = {
-        @ComponentScan(value = "edu.hubu.commons.config"),
-        @ComponentScan(value = "edu.hubu.commons.controller")
-})
+@SpringBootApplication(scanBasePackages = "edu.hubu")
+//@EnableCommons
 public class ProviderAdmin9000Application {
 
     public static void main(String[] args) {

@@ -30,7 +30,7 @@ public class ErrorController extends AbstractErrorController {
         HttpStatus httpStatus = getStatus(request);
         Map<String, Object> body = getErrorAttributes(request, false);
         return new CommonResult().setMessage(body.get("message").toString())
-                .setCode(httpStatus.value()).setCurrentPage(1).setTotalPages(1);
+                .setCode(httpStatus.value()).setCurrentPage(1).setTotal(1);
     }
 
     @Override

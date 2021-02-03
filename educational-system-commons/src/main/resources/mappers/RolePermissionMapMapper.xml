@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.hubu.commons.mybatis.mapper.RolePermissionMapMapper">
+  <resultMap id="BaseResultMap" type="edu.hubu.commons.mybatis.model.RolePermissionMap">
+    <!--@mbg.generated-->
+    <!--@Table role_permission_map-->
+    <id column="role_permission_id" jdbcType="VARCHAR" property="rolePermissionId" />
+    <result column="role_permission_permission_id" jdbcType="VARCHAR" property="rolePermissionPermissionId" />
+    <result column="role_permission_role_id" jdbcType="VARCHAR" property="rolePermissionRoleId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    role_permission_id, role_permission_permission_id, role_permission_role_id
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from role_permission_map
+    where role_permission_id = #{rolePermissionId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    <!--@mbg.generated-->
+    delete from role_permission_map
+    where role_permission_id = #{rolePermissionId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="edu.hubu.commons.mybatis.model.RolePermissionMap">
+    <!--@mbg.generated-->
+    insert into role_permission_map (role_permission_id, role_permission_permission_id, 
+      role_permission_role_id)
+    values (#{rolePermissionId,jdbcType=VARCHAR}, #{rolePermissionPermissionId,jdbcType=VARCHAR}, 
+      #{rolePermissionRoleId,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.hubu.commons.mybatis.model.RolePermissionMap">
+    <!--@mbg.generated-->
+    insert into role_permission_map
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="rolePermissionId != null">
+        role_permission_id,
+      </if>
+      <if test="rolePermissionPermissionId != null">
+        role_permission_permission_id,
+      </if>
+      <if test="rolePermissionRoleId != null">
+        role_permission_role_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="rolePermissionId != null">
+        #{rolePermissionId,jdbcType=VARCHAR},
+      </if>
+      <if test="rolePermissionPermissionId != null">
+        #{rolePermissionPermissionId,jdbcType=VARCHAR},
+      </if>
+      <if test="rolePermissionRoleId != null">
+        #{rolePermissionRoleId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="edu.hubu.commons.mybatis.model.RolePermissionMap">
+    <!--@mbg.generated-->
+    update role_permission_map
+    <set>
+      <if test="rolePermissionPermissionId != null">
+        role_permission_permission_id = #{rolePermissionPermissionId,jdbcType=VARCHAR},
+      </if>
+      <if test="rolePermissionRoleId != null">
+        role_permission_role_id = #{rolePermissionRoleId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where role_permission_id = #{rolePermissionId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="edu.hubu.commons.mybatis.model.RolePermissionMap">
+    <!--@mbg.generated-->
+    update role_permission_map
+    set role_permission_permission_id = #{rolePermissionPermissionId,jdbcType=VARCHAR},
+      role_permission_role_id = #{rolePermissionRoleId,jdbcType=VARCHAR}
+    where role_permission_id = #{rolePermissionId,jdbcType=VARCHAR}
+  </update>
+</mapper>

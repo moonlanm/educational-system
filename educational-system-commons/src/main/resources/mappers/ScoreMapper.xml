@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.hubu.commons.mybatis.mapper.ScoreMapper">
+  <resultMap id="BaseResultMap" type="edu.hubu.commons.mybatis.model.Score">
+    <!--@mbg.generated-->
+    <!--@Table score-->
+    <id column="score_id" jdbcType="VARCHAR" property="scoreId" />
+    <result column="score_exam" jdbcType="VARCHAR" property="scoreExam" />
+    <result column="score_final" jdbcType="VARCHAR" property="scoreFinal" />
+    <result column="score_is_committed" jdbcType="BOOLEAN" property="scoreIsCommitted" />
+    <result column="score_is_deleted" jdbcType="BOOLEAN" property="scoreIsDeleted" />
+    <result column="score_is_forbidden" jdbcType="BOOLEAN" property="scoreIsForbidden" />
+    <result column="score_usual" jdbcType="VARCHAR" property="scoreUsual" />
+    <result column="score_student_course_id" jdbcType="VARCHAR" property="scoreStudentCourseId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    score_id, score_exam, score_final, score_is_committed, score_is_deleted, score_is_forbidden, 
+    score_usual, score_student_course_id
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from score
+    where score_id = #{scoreId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    <!--@mbg.generated-->
+    delete from score
+    where score_id = #{scoreId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="edu.hubu.commons.mybatis.model.Score">
+    <!--@mbg.generated-->
+    insert into score (score_id, score_exam, score_final, 
+      score_is_committed, score_is_deleted, score_is_forbidden, 
+      score_usual, score_student_course_id)
+    values (#{scoreId,jdbcType=VARCHAR}, #{scoreExam,jdbcType=VARCHAR}, #{scoreFinal,jdbcType=VARCHAR}, 
+      #{scoreIsCommitted,jdbcType=BOOLEAN}, #{scoreIsDeleted,jdbcType=BOOLEAN}, #{scoreIsForbidden,jdbcType=BOOLEAN}, 
+      #{scoreUsual,jdbcType=VARCHAR}, #{scoreStudentCourseId,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.hubu.commons.mybatis.model.Score">
+    <!--@mbg.generated-->
+    insert into score
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="scoreId != null">
+        score_id,
+      </if>
+      <if test="scoreExam != null">
+        score_exam,
+      </if>
+      <if test="scoreFinal != null">
+        score_final,
+      </if>
+      <if test="scoreIsCommitted != null">
+        score_is_committed,
+      </if>
+      <if test="scoreIsDeleted != null">
+        score_is_deleted,
+      </if>
+      <if test="scoreIsForbidden != null">
+        score_is_forbidden,
+      </if>
+      <if test="scoreUsual != null">
+        score_usual,
+      </if>
+      <if test="scoreStudentCourseId != null">
+        score_student_course_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="scoreId != null">
+        #{scoreId,jdbcType=VARCHAR},
+      </if>
+      <if test="scoreExam != null">
+        #{scoreExam,jdbcType=VARCHAR},
+      </if>
+      <if test="scoreFinal != null">
+        #{scoreFinal,jdbcType=VARCHAR},
+      </if>
+      <if test="scoreIsCommitted != null">
+        #{scoreIsCommitted,jdbcType=BOOLEAN},
+      </if>
+      <if test="scoreIsDeleted != null">
+        #{scoreIsDeleted,jdbcType=BOOLEAN},
+      </if>
+      <if test="scoreIsForbidden != null">
+        #{scoreIsForbidden,jdbcType=BOOLEAN},
+      </if>
+      <if test="scoreUsual != null">
+        #{scoreUsual,jdbcType=VARCHAR},
+      </if>
+      <if test="scoreStudentCourseId != null">
+        #{scoreStudentCourseId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="edu.hubu.commons.mybatis.model.Score">
+    <!--@mbg.generated-->
+    update score
+    <set>
+      <if test="scoreExam != null">
+        score_exam = #{scoreExam,jdbcType=VARCHAR},
+      </if>
+      <if test="scoreFinal != null">
+        score_final = #{scoreFinal,jdbcType=VARCHAR},
+      </if>
+      <if test="scoreIsCommitted != null">
+        score_is_committed = #{scoreIsCommitted,jdbcType=BOOLEAN},
+      </if>
+      <if test="scoreIsDeleted != null">
+        score_is_deleted = #{scoreIsDeleted,jdbcType=BOOLEAN},
+      </if>
+      <if test="scoreIsForbidden != null">
+        score_is_forbidden = #{scoreIsForbidden,jdbcType=BOOLEAN},
+      </if>
+      <if test="scoreUsual != null">
+        score_usual = #{scoreUsual,jdbcType=VARCHAR},
+      </if>
+      <if test="scoreStudentCourseId != null">
+        score_student_course_id = #{scoreStudentCourseId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where score_id = #{scoreId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="edu.hubu.commons.mybatis.model.Score">
+    <!--@mbg.generated-->
+    update score
+    set score_exam = #{scoreExam,jdbcType=VARCHAR},
+      score_final = #{scoreFinal,jdbcType=VARCHAR},
+      score_is_committed = #{scoreIsCommitted,jdbcType=BOOLEAN},
+      score_is_deleted = #{scoreIsDeleted,jdbcType=BOOLEAN},
+      score_is_forbidden = #{scoreIsForbidden,jdbcType=BOOLEAN},
+      score_usual = #{scoreUsual,jdbcType=VARCHAR},
+      score_student_course_id = #{scoreStudentCourseId,jdbcType=VARCHAR}
+    where score_id = #{scoreId,jdbcType=VARCHAR}
+  </update>
+</mapper>

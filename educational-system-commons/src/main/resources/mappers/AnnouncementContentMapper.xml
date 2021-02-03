@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.hubu.commons.mybatis.mapper.AnnouncementContentMapper">
+    <resultMap id="BaseResultMap" type="edu.hubu.commons.mybatis.model.AnnouncementContent">
+        <!--@mbg.generated-->
+        <!--@Table announcement_content-->
+        <id column="announcement_content_id" jdbcType="VARCHAR" property="announcementContentId"/>
+        <result column="announcement_content_text" jdbcType="VARCHAR" property="announcementContentText"/>
+        <result column="announcement_content_announcement_id" jdbcType="VARCHAR"
+                property="announcementContentAnnouncementId"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--@mbg.generated-->
+        announcement_content_id, announcement_content_text, announcement_content_announcement_id
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+        <!--@mbg.generated-->
+        select
+        <include refid="Base_Column_List"/>
+        from announcement_content
+        where announcement_content_id = #{announcementContentId,jdbcType=VARCHAR}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+        <!--@mbg.generated-->
+        delete
+        from announcement_content
+        where announcement_content_id = #{announcementContentId,jdbcType=VARCHAR}
+    </delete>
+    <insert id="insert" parameterType="edu.hubu.commons.mybatis.model.AnnouncementContent">
+        <!--@mbg.generated-->
+        insert into announcement_content (announcement_content_id, announcement_content_text,
+                                          announcement_content_announcement_id)
+        values (#{announcementContentId,jdbcType=VARCHAR}, #{announcementContentText,jdbcType=VARCHAR},
+                #{announcementContentAnnouncementId,jdbcType=VARCHAR})
+    </insert>
+    <insert id="insertSelective" parameterType="edu.hubu.commons.mybatis.model.AnnouncementContent">
+        <!--@mbg.generated-->
+        insert into announcement_content
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="announcementContentId != null">
+                announcement_content_id,
+            </if>
+            <if test="announcementContentText != null">
+                announcement_content_text,
+            </if>
+            <if test="announcementContentAnnouncementId != null">
+                announcement_content_announcement_id,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="announcementContentId != null">
+                #{announcementContentId,jdbcType=VARCHAR},
+            </if>
+            <if test="announcementContentText != null">
+                #{announcementContentText,jdbcType=VARCHAR},
+            </if>
+            <if test="announcementContentAnnouncementId != null">
+                #{announcementContentAnnouncementId,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="edu.hubu.commons.mybatis.model.AnnouncementContent">
+        <!--@mbg.generated-->
+        update announcement_content
+        <set>
+            <if test="announcementContentText != null">
+                announcement_content_text = #{announcementContentText,jdbcType=VARCHAR},
+            </if>
+            <if test="announcementContentAnnouncementId != null">
+                announcement_content_announcement_id = #{announcementContentAnnouncementId,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where announcement_content_id = #{announcementContentId,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="edu.hubu.commons.mybatis.model.AnnouncementContent">
+        <!--@mbg.generated-->
+        update announcement_content
+        set announcement_content_text            = #{announcementContentText,jdbcType=VARCHAR},
+            announcement_content_announcement_id = #{announcementContentAnnouncementId,jdbcType=VARCHAR}
+        where announcement_content_id = #{announcementContentId,jdbcType=VARCHAR}
+    </update>
+</mapper>
