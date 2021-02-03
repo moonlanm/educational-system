@@ -29,8 +29,106 @@ import java.util.List;
 public class CMXSGen {
     public static void main(String[] args) {
         //serviceGen();
-        serviceImplGen();
+        //serviceImplGen();
         //controllerGen();
+        conControllerGen();
+    }
+
+    private static void conControllerGen() {
+        String path = "/home/moonlan/code/java/educational-system/educational-system-gen/src/main/resources/ftls/con";
+        Configuration configuration = new Configuration(Configuration.VERSION_2_3_29);
+        try {
+            configuration.setDirectoryForTemplateLoading(new File(path));
+            String[] packageName = {"teacher", "admin", "student"};
+            for (String s : packageName) {
+                List<Class<?>> classes = getClasses("edu.hubu.commons.model." + s);
+                for (Class<?> clazz : classes) {
+                    HashMap<String, Object> map = new HashMap<>();
+                    map.put("modelName", clazz.getSimpleName().replace(clazz.getSimpleName().charAt(0),
+                            (char) (clazz.getSimpleName().charAt(0) + 32)));
+                    map.put("modelClassName", clazz.getSimpleName());
+                    map.put("packageName", s);
+                    map.put("modelDesc", clazz.getAnnotation(ApiModel.class).value());
+                    Field[] clazzFields = clazz.getDeclaredFields();
+                    boolean hasDeleted = false;
+                    for (Field f : clazzFields) {
+                        f.setAccessible(true);
+                        if (BaseModel.class.isAssignableFrom(f.getType())) {
+                            continue;
+                        }
+
+                        if (Collection.class.isAssignableFrom(f.getType())) {
+                            continue;
+                        }
+                        if (Modifier.isStatic(f.getModifiers()) || Modifier.isFinal(f.getModifiers())) {
+                            continue;
+                        }
+                        if (f.getName().endsWith("IsDeleted")) {
+                            hasDeleted = true;
+                        }
+                    }
+                    map.put("isDeleted", hasDeleted);
+                    Template template = configuration.getTemplate("controller.flt");
+                    //FileWriter writer = new FileWriter("/home/moonlan/code/java/educational-system/educational
+                    // -system-commons/src/main/java/edu/hubu/commons/service/" + s + "/impl/" + clazz.getSimpleName
+                    // () + "ServiceImpl.kt");
+                    FileWriter writer = new FileWriter("/home/moonlan/code/java/src/controller/" + clazz.getSimpleName
+                            () + "Controller.java");
+                    //template.process(map, new PrintWriter(System.out));
+                    template.process(map, writer);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static void conServiceGen() {
+        String path = "/home/moonlan/code/java/educational-system/educational-system-gen/src/main/resources/ftls/con";
+        Configuration configuration = new Configuration(Configuration.VERSION_2_3_29);
+        try {
+            configuration.setDirectoryForTemplateLoading(new File(path));
+            String[] packageName = {"teacher", "admin", "student"};
+            for (String s : packageName) {
+                List<Class<?>> classes = getClasses("edu.hubu.commons.model." + s);
+                for (Class<?> clazz : classes) {
+                    HashMap<String, Object> map = new HashMap<>();
+                    map.put("modelName", clazz.getSimpleName().replace(clazz.getSimpleName().charAt(0),
+                            (char) (clazz.getSimpleName().charAt(0) + 32)));
+                    map.put("modelClassName", clazz.getSimpleName());
+                    map.put("packageName", s);
+                    Field[] clazzFields = clazz.getDeclaredFields();
+                    boolean hasDeleted = false;
+                    for (Field f : clazzFields) {
+                        f.setAccessible(true);
+                        if (BaseModel.class.isAssignableFrom(f.getType())) {
+                            continue;
+                        }
+
+                        if (Collection.class.isAssignableFrom(f.getType())) {
+                            continue;
+                        }
+                        if (Modifier.isStatic(f.getModifiers()) || Modifier.isFinal(f.getModifiers())) {
+                            continue;
+                        }
+                        if (f.getName().endsWith("IsDeleted")) {
+                            hasDeleted = true;
+                        }
+                    }
+                    map.put("isDeleted", hasDeleted);
+                    Template template = configuration.getTemplate("service.flt");
+                    //FileWriter writer = new FileWriter("/home/moonlan/code/java/educational-system/educational
+                    // -system-commons/src/main/java/edu/hubu/commons/service/" + s + "/impl/" + clazz.getSimpleName
+                    // () + "ServiceImpl.kt");
+                    FileWriter writer = new FileWriter("/home/moonlan/code/java/src/service/I" + clazz.getSimpleName
+                            () + "Service.java");
+                    //template.process(map, new PrintWriter(System.out));
+                    template.process(map, writer);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     private static void controllerGen() {

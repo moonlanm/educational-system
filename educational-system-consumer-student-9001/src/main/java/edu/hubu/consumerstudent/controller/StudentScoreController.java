@@ -1,8 +1,8 @@
-package edu.hubu.consumerteacher.controller;
+package edu.hubu.consumerstudent.controller;
 
 import edu.hubu.commons.model.CommonResult;
-import edu.hubu.commons.model.teacher.Teacher;
-import edu.hubu.consumerteacher.service.ITeacherService;
+import edu.hubu.commons.model.student.StudentScore;
+import edu.hubu.consumerstudent.service.IStudentScoreService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
@@ -15,25 +15,25 @@ import org.springframework.web.bind.annotation.*;
  */
 @SuppressWarnings(value = "unused")
 @RestController
-@RequestMapping("/consumer/teacher")
-@Api(tags = "老师api")
-public class TeacherController {
+@RequestMapping("/consumer/studentscore")
+@Api(tags = "学生成绩api")
+public class StudentScoreController {
 
-    private final ITeacherService service;
+    private final IStudentScoreService service;
 
-    public TeacherController(ITeacherService service) {this.service = service;}
+    public StudentScoreController(IStudentScoreService service) {this.service = service;}
 
     @GetMapping("/{id}")
     @ApiOperation(value = "根据Id精确查询")
-    @ApiImplicitParam(name = "id", value = "老师id", required = true, dataTypeClass = String.class)
+    @ApiImplicitParam(name = "id", value = "学生成绩id", required = true, dataTypeClass = String.class)
     public CommonResult selectOneById(@PathVariable("id") String id) {
         return service.selectOne(id);
     }
 
     @GetMapping("/all")
     @ApiOperation(value = "查询所有，不带分页")
-    @ApiImplicitParam(name = "orderBy", value = "排序字段，默认为老师ID，非必须参数", dataTypeClass = String.class)
-    public CommonResult selectAll(@RequestParam(defaultValue = "teacherId") String orderBy) {
+    @ApiImplicitParam(name = "orderBy", value = "排序字段，默认为学生成绩ID，非必须参数", dataTypeClass = String.class)
+    public CommonResult selectAll(@RequestParam(defaultValue = "studentscoreId") String orderBy) {
         return service.selectAll(orderBy);
     }
 
@@ -42,12 +42,12 @@ public class TeacherController {
     @ApiImplicitParams(value = {
             @ApiImplicitParam(name = "currentPage", value = "当前页，从1开始，默认大小为1,非必须参数", dataTypeClass = Integer.class),
             @ApiImplicitParam(name = "pageSize", value = "页面大小，默认为5,非必须参数", dataTypeClass = Integer.class),
-            @ApiImplicitParam(name = "orderBy", value = "排序字段，默认为老师ID，非必须参数", dataTypeClass = String.class)
+            @ApiImplicitParam(name = "orderBy", value = "排序字段，默认为学生成绩ID，非必须参数", dataTypeClass = String.class)
     })
     public CommonResult selectAllPage(
             @RequestParam(defaultValue = "1") Integer currentPage,
             @RequestParam(defaultValue = "5") Integer pageSize,
-            @RequestParam(defaultValue = "teacherId") String orderBy
+            @RequestParam(defaultValue = "studentscoreId") String orderBy
     ) {
         return service.selectAllPage(currentPage, pageSize, orderBy);
     }
@@ -57,53 +57,53 @@ public class TeacherController {
     @ApiImplicitParams(value = {
             @ApiImplicitParam(name = "currentPage", value = "当前页，从1开始，默认大小为1,非必须参数", dataTypeClass = Integer.class),
             @ApiImplicitParam(name = "pageSize", value = "页面大小，默认为5,非必须参数", dataTypeClass = Integer.class),
-            @ApiImplicitParam(name = "orderBy", value = "排序字段，默认为老师ID，非必须参数", dataTypeClass = String.class),
-            @ApiImplicitParam(name = "teacher", value = "查询老师的条件", required = true, dataTypeClass =
-                    edu.hubu.commons.mybatis.model.Teacher.class)
+            @ApiImplicitParam(name = "orderBy", value = "排序字段，默认为学生成绩ID，非必须参数", dataTypeClass = String.class),
+            @ApiImplicitParam(name = "studentscore", value = "查询学生成绩的条件", required = true, dataTypeClass =
+                    edu.hubu.commons.mybatis.model.StudentScore.class)
     })
     public CommonResult selectLikePage(
             @RequestParam(defaultValue = "1") Integer currentPage,
             @RequestParam(defaultValue = "5") Integer pageSize,
-            @RequestParam(defaultValue = "teacherId") String orderBy,
-            @RequestBody edu.hubu.commons.mybatis.model.Teacher teacher
+            @RequestParam(defaultValue = "studentscoreId") String orderBy,
+            @RequestBody edu.hubu.commons.mybatis.model.StudentScore studentscore
     ) {
-        return service.selectLikePage(currentPage, pageSize, orderBy, teacher);
+        return service.selectLikePage(currentPage, pageSize, orderBy, studentscore);
     }
 
     @PostMapping("/")
     @ApiOperation(value = "保存")
-    @ApiImplicitParam(name = "teacher", value = "需要保存的老师", required = true, dataTypeClass = Teacher.class)
-    public CommonResult save(@RequestBody Teacher teacher) {
-        return service.save(teacher);
+    @ApiImplicitParam(name = "studentscore", value = "需要保存的学生成绩", required = true, dataTypeClass = StudentScore.class)
+    public CommonResult save(@RequestBody StudentScore studentscore) {
+        return service.save(studentscore);
     }
 
     @PutMapping("/{id}")
     @ApiOperation(value = "根据Id修改")
     @ApiImplicitParams(value = {
-            @ApiImplicitParam(name = "id", value = "老师id", required = true, dataTypeClass = String.class),
-            @ApiImplicitParam(name = "teacher", value = "需要修改的老师", required = true, dataTypeClass = Teacher.class),
+            @ApiImplicitParam(name = "id", value = "学生成绩id", required = true, dataTypeClass = String.class),
+            @ApiImplicitParam(name = "studentscore", value = "需要修改的学生成绩", required = true, dataTypeClass = StudentScore.class),
     })
-    public CommonResult update(@PathVariable("id") String id, @RequestBody Teacher teacher) {
-        return service.update(id, teacher);
+    public CommonResult update(@PathVariable("id") String id, @RequestBody StudentScore studentscore) {
+        return service.update(id, studentscore);
     }
 
     @DeleteMapping("/{id}")
     @ApiOperation(value = "根据Id逻辑删除")
-    @ApiImplicitParam(name = "id", value = "老师id", required = true, dataTypeClass = String.class)
+    @ApiImplicitParam(name = "id", value = "学生成绩id", required = true, dataTypeClass = String.class)
     public CommonResult logicDeleteById(@PathVariable("id") String id) {
         return service.logicDeleteById(id);
     }
 
     @PatchMapping("/{id}")
     @ApiOperation(value = "根据Id封禁")
-    @ApiImplicitParam(name = "id", value = "老师id", required = true, dataTypeClass = String.class)
+    @ApiImplicitParam(name = "id", value = "学生成绩id", required = true, dataTypeClass = String.class)
     public CommonResult forbidById(@PathVariable("id") String id) {
         return service.forbidById(id);
     }
 
     @DeleteMapping("/delete/{id}")
     @ApiOperation(value = "根据Id删除")
-    @ApiImplicitParam(name = "id", value = "老师id", required = true, dataTypeClass = String.class)
+    @ApiImplicitParam(name = "id", value = "学生成绩id", required = true, dataTypeClass = String.class)
     public CommonResult deleteById(@PathVariable("id") String id) {
         return service.deleteById(id);
     }
