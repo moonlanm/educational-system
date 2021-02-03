@@ -9,6 +9,8 @@ import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 /**
  * @author moonlan
  * date 2021/2/1 下午2:16
@@ -36,10 +38,11 @@ public class AnnouncementTypeController {
     @ApiOperation(value = "查询所有，不带分页")
     @ApiImplicitParam(name = "orderBy", value = "排序字段，默认为公告类型ID，非必须参数", dataTypeClass = String.class)
     public CommonResult selectAll(@RequestParam(defaultValue = "announcementTypeId") String orderBy) {
+        List<AnnouncementType> list = service.selectAllOrderBy(orderBy);
         return new CommonResult().setCode(200).setCurrentPage(1)
-                .setData(service.selectAllOrderBy(orderBy))
-                .setMessage("SUCCESS")
-                .setTotal(1);
+            .setData(list)
+            .setMessage("SUCCESS")
+            .setTotal(list.size());
     }
 
     @GetMapping("/")
@@ -54,10 +57,11 @@ public class AnnouncementTypeController {
             @RequestParam(defaultValue = "5") Integer pageSize,
             @RequestParam(defaultValue = "announcementTypeId") String orderBy
     ) {
+        List<AnnouncementType> list = service.selectAllPageOrderBy(currentPage, pageSize, orderBy);
         return new CommonResult().setCode(200).setCurrentPage(1)
-                .setData(service.selectAllPageOrderBy(currentPage, pageSize, orderBy))
-                .setMessage("SUCCESS")
-                .setTotal(1);
+            .setData(list)
+            .setMessage("SUCCESS")
+            .setTotal(list.size());
     }
 
     @PostMapping("/select-like")
@@ -74,10 +78,12 @@ public class AnnouncementTypeController {
             @RequestParam(defaultValue = "announcementTypeId") String orderBy,
             @RequestBody edu.hubu.commons.mybatis.model.AnnouncementType announcementType
     ) {
+        List<edu.hubu.commons.mybatis.model.AnnouncementType> list = service.selectLikePageOrderBy(currentPage, pageSize,
+            orderBy, announcementType);
         return new CommonResult().setCode(200).setCurrentPage(1)
-                .setData(service.selectLikePageOrderBy(currentPage, pageSize, orderBy, announcementType))
-                .setMessage("SUCCESS")
-                .setTotal(1);
+            .setData(list)
+            .setMessage("SUCCESS")
+            .setTotal(list.size());
     }
 
     @PostMapping("/")

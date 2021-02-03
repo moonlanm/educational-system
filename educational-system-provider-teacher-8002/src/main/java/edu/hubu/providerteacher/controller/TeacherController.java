@@ -9,6 +9,8 @@ import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 /**
  * @author moonlan
  * date 2021/2/1 下午2:16
@@ -36,10 +38,11 @@ public class TeacherController {
     @ApiOperation(value = "查询所有，不带分页")
     @ApiImplicitParam(name = "orderBy", value = "排序字段，默认为老师ID，非必须参数", dataTypeClass = String.class)
     public CommonResult selectAll(@RequestParam(defaultValue = "teacherId") String orderBy) {
+        List<Teacher> list = service.selectAllOrderBy(orderBy);
         return new CommonResult().setCode(200).setCurrentPage(1)
-                .setData(service.selectAllOrderBy(orderBy))
-                .setMessage("SUCCESS")
-                .setTotal(1);
+            .setData(list)
+            .setMessage("SUCCESS")
+            .setTotal(list.size());
     }
 
     @GetMapping("/")
@@ -54,10 +57,11 @@ public class TeacherController {
             @RequestParam(defaultValue = "5") Integer pageSize,
             @RequestParam(defaultValue = "teacherId") String orderBy
     ) {
+        List<Teacher> list = service.selectAllPageOrderBy(currentPage, pageSize, orderBy);
         return new CommonResult().setCode(200).setCurrentPage(1)
-                .setData(service.selectAllPageOrderBy(currentPage, pageSize, orderBy))
-                .setMessage("SUCCESS")
-                .setTotal(1);
+            .setData(list)
+            .setMessage("SUCCESS")
+            .setTotal(list.size());
     }
 
     @PostMapping("/select-like")
@@ -74,10 +78,12 @@ public class TeacherController {
             @RequestParam(defaultValue = "teacherId") String orderBy,
             @RequestBody edu.hubu.commons.mybatis.model.Teacher teacher
     ) {
+        List<edu.hubu.commons.mybatis.model.Teacher> list = service.selectLikePageOrderBy(currentPage, pageSize,
+            orderBy, teacher);
         return new CommonResult().setCode(200).setCurrentPage(1)
-                .setData(service.selectLikePageOrderBy(currentPage, pageSize, orderBy, teacher))
-                .setMessage("SUCCESS")
-                .setTotal(1);
+            .setData(list)
+            .setMessage("SUCCESS")
+            .setTotal(list.size());
     }
 
     @PostMapping("/")
