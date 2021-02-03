@@ -30,8 +30,8 @@ public class CMXSGen {
     public static void main(String[] args) {
         //serviceGen();
         //serviceImplGen();
-        controllerGen();
-        //conControllerGen();
+        //controllerGen();
+        conControllerGen();
     }
 
     private static void conControllerGen() {

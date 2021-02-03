@@ -87,19 +87,6 @@ public class TimeBlockController {
         return service.update(id, timeBlock);
     }
 
-    @DeleteMapping("/{id}")
-    @ApiOperation(value = "根据Id逻辑删除")
-    @ApiImplicitParam(name = "id", value = "一天分得的时间块id", required = true, dataTypeClass = String.class)
-    public CommonResult logicDeleteById(@PathVariable("id") String id) {
-        return service.logicDeleteById(id);
-    }
-
-    @PatchMapping("/{id}")
-    @ApiOperation(value = "根据Id封禁")
-    @ApiImplicitParam(name = "id", value = "一天分得的时间块id", required = true, dataTypeClass = String.class)
-    public CommonResult forbidById(@PathVariable("id") String id) {
-        return service.forbidById(id);
-    }
 
     @DeleteMapping("/delete/{id}")
     @ApiOperation(value = "根据Id删除")

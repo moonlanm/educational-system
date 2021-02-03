@@ -91,14 +91,14 @@ public class FacultyController {
     @ApiOperation(value = "根据Id逻辑删除")
     @ApiImplicitParam(name = "id", value = "学院id", required = true, dataTypeClass = String.class)
     public CommonResult logicDeleteById(@PathVariable("id") String id) {
-        return service.logicDeleteById(id);
+    return service.logicDeleteById(id);
     }
 
     @PatchMapping("/{id}")
     @ApiOperation(value = "根据Id封禁")
     @ApiImplicitParam(name = "id", value = "学院id", required = true, dataTypeClass = String.class)
     public CommonResult forbidById(@PathVariable("id") String id) {
-        return service.forbidById(id);
+    return service.forbidById(id);
     }
 
     @DeleteMapping("/delete/{id}")

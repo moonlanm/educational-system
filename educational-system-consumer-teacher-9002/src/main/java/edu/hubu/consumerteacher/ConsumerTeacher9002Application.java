@@ -10,7 +10,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
  * date 2021/2/1 下午4:54
  */
 @SuppressWarnings(value = "unused")
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = "edu.hubu")
 @EnableDiscoveryClient
 @EnableFeignClients
 public class ConsumerTeacher9002Application {

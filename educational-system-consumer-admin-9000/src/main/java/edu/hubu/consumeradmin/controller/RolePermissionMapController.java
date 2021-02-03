@@ -87,19 +87,6 @@ public class RolePermissionMapController {
         return service.update(id, rolePermissionMap);
     }
 
-    @DeleteMapping("/{id}")
-    @ApiOperation(value = "根据Id逻辑删除")
-    @ApiImplicitParam(name = "id", value = "角色权限映射id", required = true, dataTypeClass = String.class)
-    public CommonResult logicDeleteById(@PathVariable("id") String id) {
-        return service.logicDeleteById(id);
-    }
-
-    @PatchMapping("/{id}")
-    @ApiOperation(value = "根据Id封禁")
-    @ApiImplicitParam(name = "id", value = "角色权限映射id", required = true, dataTypeClass = String.class)
-    public CommonResult forbidById(@PathVariable("id") String id) {
-        return service.forbidById(id);
-    }
 
     @DeleteMapping("/delete/{id}")
     @ApiOperation(value = "根据Id删除")
