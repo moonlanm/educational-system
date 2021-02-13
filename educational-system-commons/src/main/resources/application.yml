@@ -1,15 +1,16 @@
 spring:
   datasource:
-    driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5432/sys_edu
-    username: postgres
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/sys_edu
+    username: root
     password: root
   jpa:
     generate-ddl: true
     show-sql: true
-    database: postgresql
+    database: mysql
     hibernate:
       ddl-auto: update
+    database-platform: org.hibernate.dialect.MySQL8Dialect
 logging:
   level:
     edu.hubu: debug
